@@ -97,7 +97,7 @@ class YoLogger {
     final time = DateFormat('HH:mm:ss').format(event.timestamp);
     final tag = event.tag != null ? '[${event.tag}] ' : '';
 
-    print('[YoLogger] - $levelPrefix$time $tag${event.message}');
+    print('$levelPrefix$time $tag${event.message}');
 
     if (event.data != null) {
       print('  Data: ${event.data}');
@@ -115,15 +115,15 @@ class YoLogger {
   static String _getLevelPrefix(YoLogLevel level) {
     switch (level) {
       case YoLogLevel.debug:
-        return '🐛 DEBUG ';
+        return '[YoLogger] - 🐛 DEBUG ';
       case YoLogLevel.info:
-        return 'ℹ️ INFO ';
+        return '[YoLogger] - ℹ️ INFO ';
       case YoLogLevel.warning:
-        return '⚠️ WARN ';
+        return '[YoLogger] - ⚠️ WARN ';
       case YoLogLevel.error:
-        return '❌ ERROR ';
+        return '[YoLogger] - ❌ ERROR ';
       case YoLogLevel.critical:
-        return '🚨 CRITICAL ';
+        return '[YoLogger] - 🚨 CRITICAL ';
     }
   }
 
