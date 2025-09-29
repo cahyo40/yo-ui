@@ -28,7 +28,7 @@ Add this to your `pubspec.yaml`:
 dependencies:
   youi:
     git:
-      url: https://github.com/cahyo40/yo-ui.git
+      url: https://github.com/cahyo40/youi.git
       ref: main
 ```
 
