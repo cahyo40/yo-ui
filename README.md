@@ -1,6 +1,5 @@
 ## `README.md`
 
-```markdown
 # 🎨 YoUI - Flutter Style Guide & Component Library
 
 [![Flutter](https://img.shields.io/badge/Flutter-3.0+-blue.svg)](https://flutter.dev)
@@ -23,11 +22,13 @@ A comprehensive, production-ready Flutter style guide and component library that
 
 Add this to your `pubspec.yaml`:
 
+
+
 ```yaml
 dependencies:
   youi:
     git:
-      url: https://github.com/your-username/youi.git
+      url: https://github.com/cahyo40/yo-ui.git
       ref: main
 ```
 
@@ -194,10 +195,6 @@ YoCard(
   child: Text('Card Content'),
 )
 
-// Surface card
-YoCard.surface(
-  child: Text('Surface Card'),
-)
 
 // Elevated card
 YoCard.elevated(
