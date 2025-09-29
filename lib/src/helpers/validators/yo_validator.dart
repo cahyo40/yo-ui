@@ -1,4 +1,4 @@
-import 'package:yo_ui/src/helpers/localization/yo_localization.dart';
+import '../helpers.dart';
 
 class YoValidator {
   // Email Validation dengan pesan localized
