@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:image_gallery_saver/image_gallery_saver.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'package:photo_view/photo_view.dart';
 
 import '../../../yo_ui_base.dart';
@@ -99,44 +96,6 @@ class _YoImageViewerState extends State<YoImageViewer> {
     setState(() {
       _currentIndex = index;
     });
-  }
-
-  Future<void> _downloadImage() async {
-    try {
-      final status = await Permission.storage.request();
-      if (!status.isGranted) {
-        _showSnackBar('Storage permission denied');
-        return;
-      }
-
-      final imageUrl = widget.imageUrls[_currentIndex];
-      final response = await NetworkAssetBundle(
-        Uri.parse(imageUrl),
-      ).load(imageUrl);
-      final bytes = response.buffer.asUint8List();
-
-      final result = await ImageGallerySaver.saveImage(bytes);
-
-      if (result['isSuccess'] == true) {
-        _showSnackBar('Image saved to gallery');
-      } else {
-        _showSnackBar('Failed to save image');
-      }
-    } catch (e) {
-      _showSnackBar('Error saving image: $e');
-    }
-  }
-
-  Future<void> _shareImage() async {
-    // Untuk share, kita butuh package external seperti share_plus
-    // Ini adalah placeholder implementation
-    _showSnackBar('Share feature would open here');
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message), duration: const Duration(seconds: 2)),
-    );
   }
 
   @override
@@ -238,18 +197,6 @@ class _YoImageViewerState extends State<YoImageViewer> {
                 style: const TextStyle(color: Colors.white),
               )
             : null,
-        actions: [
-          if (widget.enableShare)
-            IconButton(
-              icon: const Icon(Icons.share, color: Colors.white),
-              onPressed: _shareImage,
-            ),
-          if (widget.enableDownload)
-            IconButton(
-              icon: const Icon(Icons.download, color: Colors.white),
-              onPressed: _downloadImage,
-            ),
-        ],
       ),
     );
   }
