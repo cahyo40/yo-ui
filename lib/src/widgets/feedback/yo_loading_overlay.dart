@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../yo_ui_base.dart';
-import 'yo_loading.dart';
 
 class YoLoadingOverlay extends StatelessWidget {
   final bool isLoading;
@@ -21,7 +20,7 @@ class YoLoadingOverlay extends StatelessWidget {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) => const _FullScreenLoading(message: null),
+      builder: (context) => _FullScreenLoading(message: message),
     );
   }
 
@@ -35,9 +34,14 @@ class YoLoadingOverlay extends StatelessWidget {
       children: [
         child,
         if (isLoading)
-          Container(
-            color: overlayColor ?? Colors.black.withValues(alpha: 0.5),
-            child: Center(child: _LoadingContent(message: message)),
+          Positioned.fill(
+            child: Align(
+              alignment: Alignment.center,
+              child: Container(
+                color: overlayColor ?? Colors.black.withValues(alpha: 0.5),
+                child: Center(child: _LoadingContent(message: message)),
+              ),
+            ),
           ),
       ],
     );
