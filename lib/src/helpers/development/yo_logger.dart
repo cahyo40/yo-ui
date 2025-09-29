@@ -79,7 +79,7 @@ class YoLogger {
       error: error,
       stackTrace: stackTrace,
       tag: tag,
-      timestamp: DateTime.now(),
+      timestamp: DateTime.now().toLocal(),
     );
 
     // Add to history
