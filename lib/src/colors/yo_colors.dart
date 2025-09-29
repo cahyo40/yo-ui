@@ -1,45 +1,48 @@
+// lib/src/styles/colors/yo_colors.dart
 import 'package:flutter/material.dart';
 
-import '../../yo_ui_base.dart';
-import 'yo_color_schema.dart';
+import '../../yo_ui_base.dart'; // lokasi kYoPalettes & YoCorePalette
 
+/// Kelas warna yang **otomatis** mengikuti skema & brightness aktif.
+/// Tidak pernah pakai provider / riverpod / get_it.
 class YoColors {
-  // Light Theme Colors
-  static YoCorePalette get _defaultLight =>
-      kYoPalettes[YoColorScheme.defaultScheme]![Brightness.light]!;
-  static YoCorePalette get _defaultDark =>
-      kYoPalettes[YoColorScheme.defaultScheme]![Brightness.dark]!;
+  /* ---------- 1. helper: ambil palette untuk skema & brightness ---------- */
+  static YoCorePalette _palette(BuildContext context) {
+    // 1. brightness saat ini
+    final bright = Theme.of(context).brightness;
 
-  static Color get lightText => _defaultLight.text;
-  static Color get lightBackground => _defaultLight.background;
-  static Color get lightPrimary => _defaultLight.primary;
-  static Color get lightSecondary => _defaultLight.secondary;
-  static Color get lightAccent => _defaultLight.accent;
+    // 2. skema saat ini: simpan di dalam ThemeData.extension
+    final ext = Theme.of(context).extension<YoScheme>() ?? const YoScheme();
+    return kYoPalettes[ext.scheme]![bright]!;
+  }
 
-  static Color get darkText => _defaultDark.text;
-  static Color get darkBackground => _defaultDark.background;
-  static Color get darkPrimary => _defaultDark.primary;
-  static Color get darkSecondary => _defaultDark.secondary;
-  static Color get darkAccent => _defaultDark.accent;
+  /* ---------- 2. warna dinamis (ikut skema & brightness) ----------------- */
+  static Color primary(BuildContext context) => _palette(context).primary;
+  static Color secondary(BuildContext context) => _palette(context).secondary;
+  static Color accent(BuildContext context) => _palette(context).accent;
+  static Color text(BuildContext context) => _palette(context).text;
+  static Color background(BuildContext context) => _palette(context).background;
 
-  // Semantic Colors - Light Theme
-  static const Color lightSuccess = Color(0xFF00A86B);
-  static const Color lightWarning = Color(0xFFFFA500);
-  static const Color lightError = Color(0xFFDC3545);
-  static const Color lightInfo = Color(0xFF17A2B8);
+  /* ---------- 3. warna semantic (hanya ikut brightness) ------------------ */
+  static Color success(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightSuccess
+      : darkSuccess;
+  static Color warning(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightWarning
+      : darkWarning;
+  static Color error(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light ? lightError : darkError;
+  static Color info(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light ? lightInfo : darkInfo;
 
-  // Semantic Colors - Dark Theme
-  static const Color darkSuccess = Color(0xFF00D68F);
-  static const Color darkWarning = Color(0xFFFFB84D);
-  static const Color darkError = Color(0xFFFF4757);
-  static const Color darkInfo = Color(0xFF4DCAFF);
-
-  // Neutral Colors - Common for both themes
+  /* ---------- 4. netral & abu-abu (const) -------------------------------- */
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);
   static const Color transparent = Color(0x00000000);
 
-  // Gray Scale - Light Theme
+  // Light grey
   static const Color lightGray50 = Color(0xFFF9FAFB);
   static const Color lightGray100 = Color(0xFFF3F4F6);
   static const Color lightGray200 = Color(0xFFE5E7EB);
@@ -51,7 +54,7 @@ class YoColors {
   static const Color lightGray800 = Color(0xFF1F2937);
   static const Color lightGray900 = Color(0xFF111827);
 
-  // Gray Scale - Dark Theme
+  // Dark grey (mirror)
   static const Color darkGray50 = Color(0xFF1F2937);
   static const Color darkGray100 = Color(0xFF374151);
   static const Color darkGray200 = Color(0xFF4B5563);
@@ -63,184 +66,85 @@ class YoColors {
   static const Color darkGray800 = Color(0xFFF9FAFB);
   static const Color darkGray900 = Color(0xFFFFFFFF);
 
-  // Gradients
-  static Gradient lightPrimaryGradient = LinearGradient(
+  // Semantic const
+  static const Color lightSuccess = Color(0xFF00A86B);
+  static const Color lightWarning = Color(0xFFFFA500);
+  static const Color lightError = Color(0xFFDC3545);
+  static const Color lightInfo = Color(0xFF17A2B8);
+
+  static const Color darkSuccess = Color(0xFF00D68F);
+  static const Color darkWarning = Color(0xFFFFB84D);
+  static const Color darkError = Color(0xFFFF4757);
+  static const Color darkInfo = Color(0xFF4DCAFF);
+
+  /* ---------- 5. abu-abu dinamis (ikut brightness) ----------------------- */
+  static Color gray50(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray50
+      : darkGray50;
+  static Color gray100(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray100
+      : darkGray100;
+  static Color gray200(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray200
+      : darkGray200;
+  static Color gray300(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray300
+      : darkGray300;
+  static Color gray400(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray400
+      : darkGray400;
+  static Color gray500(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray500
+      : darkGray500;
+  static Color gray600(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray600
+      : darkGray600;
+  static Color gray700(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray700
+      : darkGray700;
+  static Color gray800(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray800
+      : darkGray800;
+  static Color gray900(BuildContext context) =>
+      Theme.of(context).brightness == Brightness.light
+      ? lightGray900
+      : darkGray900;
+
+  /* ---------- 6. gradient dinamis ---------------------------------------- */
+  static Gradient primaryGradient(BuildContext context) => LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [lightPrimary, lightSecondary],
+    colors: [primary(context), secondary(context)],
   );
-
-  static Gradient darkPrimaryGradient = LinearGradient(
+  static Gradient accentGradient(BuildContext context) => LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
-    colors: [darkPrimary, darkSecondary],
+    colors: [accent(context), secondary(context)],
   );
+}
 
-  static Gradient lightAccentGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [lightAccent, lightSecondary],
-  );
+/* ----------------------------------------------------------------------------
+   Extension sederhana untuk menyimpan skema aktif di dalam ThemeData
+   --------------------------------------------------------------------------- */
+@immutable
+class YoScheme extends ThemeExtension<YoScheme> {
+  final YoColorScheme scheme;
+  const YoScheme([this.scheme = YoColorScheme.defaultScheme]);
 
-  static Gradient darkAccentGradient = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
-    colors: [darkAccent, darkSecondary],
-  );
+  @override
+  ThemeExtension<YoScheme> copyWith({YoColorScheme? scheme}) =>
+      YoScheme(scheme ?? this.scheme);
 
-  // === STATIC GETTERS UNTUK THEME DATA ===
-  // Light Theme Colors
-  static ColorScheme get lightColorScheme => ColorScheme.light(
-    primary: lightPrimary,
-    onPrimary: lightText,
-    secondary: lightSecondary,
-    onSecondary: lightText,
-    surface: lightGray50,
-    onSurface: lightText,
-    error: lightError,
-    onError: white,
-    surfaceContainerHighest: lightGray100,
-  );
-
-  // Dark Theme Colors
-  static ColorScheme get darkColorScheme => ColorScheme.dark(
-    primary: darkPrimary,
-    onPrimary: darkText,
-    secondary: darkSecondary,
-    onSecondary: darkText,
-    surface: darkGray50,
-    onSurface: darkText,
-    error: darkError,
-    onError: white,
-    surfaceContainerHighest: darkGray100,
-  );
-
-  // === DYNAMIC GETTERS UNTUK WIDGETS (Context-aware) ===
-  static Color text(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightText
-        : darkText;
-  }
-
-  static Color background(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightBackground
-        : darkBackground;
-  }
-
-  static Color primary(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightPrimary
-        : darkPrimary;
-  }
-
-  static Color secondary(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightSecondary
-        : darkSecondary;
-  }
-
-  static Color accent(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightAccent
-        : darkAccent;
-  }
-
-  static Color success(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightSuccess
-        : darkSuccess;
-  }
-
-  static Color warning(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightWarning
-        : darkWarning;
-  }
-
-  static Color error(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightError
-        : darkError;
-  }
-
-  static Color info(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightInfo
-        : darkInfo;
-  }
-
-  // Gray scale getters
-  static Color gray50(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray50
-        : darkGray50;
-  }
-
-  static Color gray100(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray100
-        : darkGray100;
-  }
-
-  static Color gray200(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray200
-        : darkGray200;
-  }
-
-  static Color gray300(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray300
-        : darkGray300;
-  }
-
-  static Color gray400(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray400
-        : darkGray400;
-  }
-
-  static Color gray500(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray500
-        : darkGray500;
-  }
-
-  static Color gray600(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray600
-        : darkGray600;
-  }
-
-  static Color gray700(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray700
-        : darkGray700;
-  }
-
-  static Color gray800(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray800
-        : darkGray800;
-  }
-
-  static Color gray900(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightGray900
-        : darkGray900;
-  }
-
-  // Gradient getters
-  static Gradient primaryGradient(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightPrimaryGradient
-        : darkPrimaryGradient;
-  }
-
-  static Gradient accentGradient(BuildContext context) {
-    return Theme.of(context).brightness == Brightness.light
-        ? lightAccentGradient
-        : darkAccentGradient;
-  }
+  @override
+  ThemeExtension<YoScheme> lerp(ThemeExtension<YoScheme>? other, double t) =>
+      this; // tidak perlu animasi
 }
