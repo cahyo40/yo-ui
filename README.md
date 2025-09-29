@@ -26,7 +26,7 @@ Add this to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  youi:
+  yo_ui:
     git:
       url: https://github.com/cahyo40/youi.git
       ref: main
@@ -42,7 +42,7 @@ flutter pub get
 ### 1. Wrap Your App with YoTheme
 
 ```dart
-import 'package:youi/youi.dart';
+import 'package:yo_ui/yo_ui.dart';
 
 void main() {
   runApp(const MyApp());
