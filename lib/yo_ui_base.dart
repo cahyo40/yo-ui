@@ -2,9 +2,11 @@ library yo_ui_base;
 
 // Colors
 export 'src/colors/yo_color_palette.dart';
+export 'src/colors/yo_color_schema.dart';
 export 'src/colors/yo_colors.dart';
 export 'src/extensions/context_extension.dart';
 export 'src/extensions/device_extensions.dart';
+export 'src/extensions/color_extensions.dart';
 // Helpers
 export 'src/helpers/development/yo_logger.dart';
 export 'src/helpers/helpers.dart';

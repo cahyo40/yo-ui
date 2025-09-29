@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
 
+import '../../yo_ui_base.dart';
+import 'yo_color_schema.dart';
+
 class YoColors {
   // Light Theme Colors
-  static const Color lightText = Color(0xFF010509);
-  static const Color lightBackground = Color(0xFFf1f8fe);
-  static const Color lightPrimary = Color(0xFF9ec5e6);
-  static const Color lightSecondary = Color(0xFFf188da);
-  static const Color lightAccent = Color(0xFFec5163);
+  static YoCorePalette get _defaultLight =>
+      kYoPalettes[YoColorScheme.defaultScheme]![Brightness.light]!;
+  static YoCorePalette get _defaultDark =>
+      kYoPalettes[YoColorScheme.defaultScheme]![Brightness.dark]!;
 
-  // Dark Theme Colors
-  static const Color darkText = Color(0xFFf6fafe);
-  static const Color darkBackground = Color(0xFF01080e);
-  static const Color darkPrimary = Color(0xFF194161);
-  static const Color darkSecondary = Color(0xFF770e60);
-  static const Color darkAccent = Color(0xFFae1325);
+  static Color get lightText => _defaultLight.text;
+  static Color get lightBackground => _defaultLight.background;
+  static Color get lightPrimary => _defaultLight.primary;
+  static Color get lightSecondary => _defaultLight.secondary;
+  static Color get lightAccent => _defaultLight.accent;
+
+  static Color get darkText => _defaultDark.text;
+  static Color get darkBackground => _defaultDark.background;
+  static Color get darkPrimary => _defaultDark.primary;
+  static Color get darkSecondary => _defaultDark.secondary;
+  static Color get darkAccent => _defaultDark.accent;
 
   // Semantic Colors - Light Theme
   static const Color lightSuccess = Color(0xFF00A86B);
@@ -57,25 +64,25 @@ class YoColors {
   static const Color darkGray900 = Color(0xFFFFFFFF);
 
   // Gradients
-  static const Gradient lightPrimaryGradient = LinearGradient(
+  static Gradient lightPrimaryGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [lightPrimary, lightSecondary],
   );
 
-  static const Gradient darkPrimaryGradient = LinearGradient(
+  static Gradient darkPrimaryGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [darkPrimary, darkSecondary],
   );
 
-  static const Gradient lightAccentGradient = LinearGradient(
+  static Gradient lightAccentGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [lightAccent, lightSecondary],
   );
 
-  static const Gradient darkAccentGradient = LinearGradient(
+  static Gradient darkAccentGradient = LinearGradient(
     begin: Alignment.topLeft,
     end: Alignment.bottomRight,
     colors: [darkAccent, darkSecondary],
@@ -83,33 +90,29 @@ class YoColors {
 
   // === STATIC GETTERS UNTUK THEME DATA ===
   // Light Theme Colors
-  static ColorScheme get lightColorScheme => const ColorScheme.light(
+  static ColorScheme get lightColorScheme => ColorScheme.light(
     primary: lightPrimary,
     onPrimary: lightText,
     secondary: lightSecondary,
     onSecondary: lightText,
-    background: lightBackground,
-    onBackground: lightText,
     surface: lightGray50,
     onSurface: lightText,
     error: lightError,
     onError: white,
-    surfaceVariant: lightGray100,
+    surfaceContainerHighest: lightGray100,
   );
 
   // Dark Theme Colors
-  static ColorScheme get darkColorScheme => const ColorScheme.dark(
+  static ColorScheme get darkColorScheme => ColorScheme.dark(
     primary: darkPrimary,
     onPrimary: darkText,
     secondary: darkSecondary,
     onSecondary: darkText,
-    background: darkBackground,
-    onBackground: darkText,
     surface: darkGray50,
     onSurface: darkText,
     error: darkError,
     onError: white,
-    surfaceVariant: darkGray100,
+    surfaceContainerHighest: darkGray100,
   );
 
   // === DYNAMIC GETTERS UNTUK WIDGETS (Context-aware) ===
