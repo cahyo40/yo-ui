@@ -443,6 +443,36 @@ extension CustomColors on YoColors {
 }
 ```
 
+
+### 📘 YoPadding
+
+#### 🧪 Contoh Penggunaan
+```dart
+Padding(
+  padding: YoPadding.all16,
+  child: Text('Hello World'),
+)
+
+Container(
+  margin: YoPadding.symmetricV8,
+  padding: YoPadding.symmetricH12,
+  child: Icon(Icons.favorite),
+)
+```
+
+#### 📚 Daftar Nilai
+| Kategori | Contoh Nama | Nilai |
+|----------|-------------|--------|
+| All | `all4` → `all32` | `EdgeInsets.all(value)` |
+| Horizontal | `symmetricH4` → `symmetricH32` | `EdgeInsets.symmetric(horizontal: value)` |
+| Vertical | `symmetricV4` → `symmetricV32` | `EdgeInsets.symmetric(vertical: value)` |
+| Only | `onlyTop8`, `onlyLeft16`, … | `EdgeInsets.only(...)` |
+| Custom | `fromLTRB(l, t, r, b)` | `EdgeInsets.fromLTRB(...)` |
+| Custom | `only({left, top, right, bottom})` | `EdgeInsets.only(...)` |
+
+
+
+
 ## 📚 API Reference
 
 ### Available Text Styles
