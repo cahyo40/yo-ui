@@ -66,7 +66,7 @@ class YoTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
-      bottomNavigationBarTheme: YoBottomNavTheme.light,
+      bottomNavigationBarTheme: YoBottomNavTheme.light(ctx),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: YoColors.lightGray50,
@@ -148,8 +148,7 @@ class YoTheme {
         color: YoColors.darkGray50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       ),
-
-      bottomNavigationBarTheme: YoBottomNavTheme.dark,
+      bottomNavigationBarTheme: YoBottomNavTheme.dark(ctx),
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
           backgroundColor: pal.primary,

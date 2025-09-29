@@ -6,14 +6,14 @@ class YoDropdownTheme {
   static DropdownMenuThemeData light(BuildContext context) =>
       DropdownMenuThemeData(
         menuStyle: MenuStyle(
-          backgroundColor: WidgetStatePropertyAll(YoColors.lightBackground),
+          backgroundColor: WidgetStatePropertyAll(YoColors.background(context)),
         ),
       );
 
   static DropdownMenuThemeData dark(BuildContext context) =>
       DropdownMenuThemeData(
         menuStyle: MenuStyle(
-          backgroundColor: WidgetStatePropertyAll(YoColors.darkBackground),
+          backgroundColor: WidgetStatePropertyAll(YoColors.background(context)),
         ),
       );
 }

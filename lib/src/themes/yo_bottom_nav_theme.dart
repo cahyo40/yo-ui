@@ -3,16 +3,16 @@ import 'package:flutter/material.dart';
 import '../colors/yo_colors.dart';
 
 class YoBottomNavTheme {
-  static BottomNavigationBarThemeData get light => BottomNavigationBarThemeData(
-    backgroundColor: YoColors.lightBackground,
-    selectedItemColor: YoColors.lightPrimary,
+  static BottomNavigationBarThemeData  light(BuildContext context) => BottomNavigationBarThemeData(
+    backgroundColor: YoColors.background(context),
+    selectedItemColor: YoColors.primary(context),
     unselectedItemColor: YoColors.lightGray500,
     elevation: 8,
   );
 
-  static BottomNavigationBarThemeData get dark => BottomNavigationBarThemeData(
-    backgroundColor: YoColors.darkBackground,
-    selectedItemColor: YoColors.darkPrimary,
+  static BottomNavigationBarThemeData  dark(BuildContext context) => BottomNavigationBarThemeData(
+    backgroundColor: YoColors.background(context),
+    selectedItemColor: YoColors.primary(context),
     unselectedItemColor: YoColors.darkGray500,
     elevation: 8,
   );
