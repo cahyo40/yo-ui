@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
-import '../../yo_ui.dart';
+/// Versi tunggal (1 file) dari YoButton.
+/// - textColor : warna teks (null = pakai warna tema).
+/// - icon      : widget ikon opsional.
+/// - iconPosition : "left" atau "right".
+enum YoButtonVariant { primary, secondary, outline, ghost }
+
+enum YoButtonSize { small, medium, large }
 
 class YoButton extends StatelessWidget {
   final String text;
@@ -8,6 +14,8 @@ class YoButton extends StatelessWidget {
   final YoButtonVariant variant;
   final YoButtonSize size;
   final Widget? icon;
+  final String iconPosition; // "left" atau "right"
+  final Color? textColor; // <— tambahan
   final bool isLoading;
   final bool expanded;
 
@@ -18,16 +26,21 @@ class YoButton extends StatelessWidget {
     this.variant = YoButtonVariant.primary,
     this.size = YoButtonSize.medium,
     this.icon,
+    this.iconPosition = "left",
+    this.textColor,
     this.isLoading = false,
     this.expanded = false,
   });
 
+  // Named constructors (opsional, tetap tersedia)
   const YoButton.primary({
     super.key,
     required this.text,
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
+    this.iconPosition = "left",
+    this.textColor,
     this.isLoading = false,
     this.expanded = false,
   }) : variant = YoButtonVariant.primary;
@@ -38,6 +51,8 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
+    this.iconPosition = "left",
+    this.textColor,
     this.isLoading = false,
     this.expanded = false,
   }) : variant = YoButtonVariant.secondary;
@@ -48,6 +63,8 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
+    this.iconPosition = "left",
+    this.textColor,
     this.isLoading = false,
     this.expanded = false,
   }) : variant = YoButtonVariant.outline;
@@ -58,6 +75,8 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
+    this.iconPosition = "left",
+    this.textColor,
     this.isLoading = false,
     this.expanded = false,
   }) : variant = YoButtonVariant.ghost;
@@ -68,72 +87,79 @@ class YoButton extends StatelessWidget {
     final padding = _getPadding();
     final textStyle = _getTextStyle(context);
 
-    Widget child = isLoading
+    Widget contents = isLoading
         ? SizedBox(
             width: 20,
             height: 20,
             child: CircularProgressIndicator(
               strokeWidth: 2,
-              color: _getLoaderColor(context),
+              color: _loaderColor(context),
             ),
           )
         : Row(
             mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              if (icon != null) ...[icon!, SizedBox(width: _getIconSpacing())],
-              Flexible(
-                child: YoText(text, style: textStyle, align: TextAlign.center),
-              ),
-            ],
+            children: _textWithIcon(textStyle),
           );
 
-    if (expanded) {
-      child = Expanded(child: child);
-    }
+    if (expanded) contents = Expanded(child: contents);
 
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
       style: buttonStyle,
-      child: Container(padding: padding, child: child),
+      child: Container(padding: padding, child: contents),
     );
   }
 
+  List<Widget> _textWithIcon(TextStyle style) {
+    final textWidget = Flexible(
+      child: Text(text, style: style, textAlign: TextAlign.center),
+    );
+    final gap = SizedBox(width: _iconSpacing());
+
+    if (icon == null) return [textWidget];
+
+    return iconPosition.toLowerCase() == "right"
+        ? [textWidget, gap, icon!]
+        : [icon!, gap, textWidget];
+  }
+
   ButtonStyle _getButtonStyle(BuildContext context) {
+    final theme = Theme.of(context);
+    final primary = theme.colorScheme.primary;
+    final onPrimary = theme.colorScheme.onPrimary;
+    final disabledGray = theme.disabledColor;
+
     switch (variant) {
       case YoButtonVariant.primary:
         return ElevatedButton.styleFrom(
-          backgroundColor: YoColors.primary(context), // Context-aware
-          foregroundColor: YoColors.text(context), // Context-aware
-          disabledBackgroundColor: YoColors.gray300(context), // Context-aware
+          backgroundColor: primary,
+          foregroundColor: onPrimary,
+          disabledBackgroundColor: disabledGray,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         );
       case YoButtonVariant.secondary:
         return ElevatedButton.styleFrom(
-          backgroundColor: YoColors.secondary(context), // Context-aware
-          foregroundColor: YoColors.text(context), // Context-aware
-          disabledBackgroundColor: YoColors.gray300(context), // Context-aware
+          backgroundColor: theme.colorScheme.secondary,
+          foregroundColor: theme.colorScheme.onSecondary,
+          disabledBackgroundColor: disabledGray,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         );
       case YoButtonVariant.outline:
         return ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          foregroundColor: YoColors.primary(context), // Context-aware
+          foregroundColor: textColor ?? primary,
           disabledBackgroundColor: Colors.transparent,
+          side: BorderSide(color: onPressed != null ? primary : disabledGray),
           elevation: 0,
-          side: BorderSide(
-            color: onPressed != null
-                ? YoColors.primary(context) // Context-aware
-                : YoColors.gray300(context), // Context-aware
-          ),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         );
       case YoButtonVariant.ghost:
         return ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          foregroundColor: YoColors.primary(context), // Context-aware
+          foregroundColor: textColor ?? primary,
           disabledBackgroundColor: Colors.transparent,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -153,17 +179,18 @@ class YoButton extends StatelessWidget {
   }
 
   TextStyle _getTextStyle(BuildContext ctx) {
+    final base = Theme.of(ctx).textTheme;
     switch (size) {
       case YoButtonSize.small:
-        return YoTextTheme.labelSmall(ctx);
+        return base.labelSmall!.copyWith(color: textColor);
       case YoButtonSize.medium:
-        return YoTextTheme.labelMedium(ctx);
+        return base.labelMedium!.copyWith(color: textColor);
       case YoButtonSize.large:
-        return YoTextTheme.labelLarge(ctx);
+        return base.labelLarge!.copyWith(color: textColor);
     }
   }
 
-  double _getIconSpacing() {
+  double _iconSpacing() {
     switch (size) {
       case YoButtonSize.small:
         return 4;
@@ -174,18 +201,15 @@ class YoButton extends StatelessWidget {
     }
   }
 
-  Color _getLoaderColor(BuildContext context) {
+  Color _loaderColor(BuildContext context) {
+    final primary = Theme.of(context).colorScheme.primary;
     switch (variant) {
       case YoButtonVariant.primary:
       case YoButtonVariant.secondary:
-        return YoColors.white; // Static color
+        return Colors.white;
       case YoButtonVariant.outline:
       case YoButtonVariant.ghost:
-        return YoColors.primary(context); // Context-aware
+        return primary;
     }
   }
 }
-
-enum YoButtonVariant { primary, secondary, outline, ghost }
-
-enum YoButtonSize { small, medium, large }
