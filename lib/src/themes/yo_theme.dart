@@ -66,6 +66,7 @@ class YoTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
+      extensions: [YoScheme(scheme)],
       bottomNavigationBarTheme: YoBottomNavTheme.light(ctx),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
@@ -143,6 +144,7 @@ class YoTheme {
           fontFamily: 'Poppins',
         ),
       ),
+      extensions: [YoScheme(scheme)],
       cardTheme: CardThemeData(
         elevation: 2,
         color: YoColors.darkGray50,
