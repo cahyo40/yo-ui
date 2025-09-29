@@ -97,7 +97,7 @@ class YoLogger {
     final time = DateFormat('HH:mm:ss').format(event.timestamp);
     final tag = event.tag != null ? '[${event.tag}] ' : '';
 
-    print('$levelPrefix$time $tag${event.message}');
+    print('[YoLogger] - $levelPrefix$time $tag${event.message}');
 
     if (event.data != null) {
       print('  Data: ${event.data}');
