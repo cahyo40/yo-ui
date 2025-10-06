@@ -8,59 +8,44 @@ class YoLogger {
   static final List<YoLogEvent> _history = [];
   static const int _maxHistorySize = 1000;
 
-  static void setLevel(YoLogLevel level) {
-    _level = level;
-  }
+  static void setLevel(YoLogLevel level) => _level = level;
+  static void enable() => _enable = true;
+  static void disable() => _enable = false;
 
-  static void enable() {
-    _enable = true;
-  }
+  static void debug(String message, {dynamic data, String? tag}) =>
+      _log(YoLogLevel.debug, message, data: data, tag: tag);
 
-  static void disable() {
-    _enable = false;
-  }
+  static void info(String message, {dynamic data, String? tag}) =>
+      _log(YoLogLevel.info, message, data: data, tag: tag);
 
-  static void debug(String message, {dynamic data, String? tag}) {
-    _log(YoLogLevel.debug, message, data: data, tag: tag);
-  }
-
-  static void info(String message, {dynamic data, String? tag}) {
-    _log(YoLogLevel.info, message, data: data, tag: tag);
-  }
-
-  static void warning(String message, {dynamic data, String? tag}) {
-    _log(YoLogLevel.warning, message, data: data, tag: tag);
-  }
+  static void warning(String message, {dynamic data, String? tag}) =>
+      _log(YoLogLevel.warning, message, data: data, tag: tag);
 
   static void error(
     String message, {
     dynamic error,
     StackTrace? stackTrace,
     String? tag,
-  }) {
-    _log(
-      YoLogLevel.error,
-      message,
-      error: error,
-      stackTrace: stackTrace,
-      tag: tag,
-    );
-  }
+  }) => _log(
+    YoLogLevel.error,
+    message,
+    error: error,
+    stackTrace: stackTrace,
+    tag: tag,
+  );
 
   static void critical(
     String message, {
     dynamic error,
     StackTrace? stackTrace,
     String? tag,
-  }) {
-    _log(
-      YoLogLevel.critical,
-      message,
-      error: error,
-      stackTrace: stackTrace,
-      tag: tag,
-    );
-  }
+  }) => _log(
+    YoLogLevel.critical,
+    message,
+    error: error,
+    stackTrace: stackTrace,
+    tag: tag,
+  );
 
   static void _log(
     YoLogLevel level,
@@ -84,9 +69,7 @@ class YoLogger {
 
     // Add to history
     _history.add(event);
-    if (_history.length > _maxHistorySize) {
-      _history.removeAt(0);
-    }
+    if (_history.length > _maxHistorySize) _history.removeAt(0);
 
     // Print to console
     _printToConsole(event);
@@ -97,62 +80,48 @@ class YoLogger {
     final time = DateFormat('HH:mm:ss').format(event.timestamp);
     final tag = event.tag != null ? '[${event.tag}] ' : '';
 
-    print('$levelPrefix$time $tag${event.message}');
+    print('[YoLog] $levelPrefix$time $tag${event.message}');
 
-    if (event.data != null) {
-      print('  Data: ${event.data}');
-    }
-
-    if (event.error != null) {
-      print('  Error: ${event.error}');
-    }
-
-    if (event.stackTrace != null) {
-      print('  StackTrace: ${event.stackTrace}');
-    }
+    if (event.data != null) print('[YoLog]   Data: ${event.data}');
+    if (event.error != null) print('[YoLog]   Error: ${event.error}');
+    if (event.stackTrace != null)
+      print('[YoLog]   StackTrace: ${event.stackTrace}');
   }
 
   static String _getLevelPrefix(YoLogLevel level) {
     switch (level) {
       case YoLogLevel.debug:
-        return '[YoLogger] - 🐛 DEBUG ';
+        return '🐛 DEBUG ';
       case YoLogLevel.info:
-        return '[YoLogger] - ℹ️ INFO ';
+        return 'ℹ️ INFO ';
       case YoLogLevel.warning:
-        return '[YoLogger] - ⚠️ WARN ';
+        return '⚠️ WARN ';
       case YoLogLevel.error:
-        return '[YoLogger] - ❌ ERROR ';
+        return '❌ ERROR ';
       case YoLogLevel.critical:
-        return '[YoLogger] - 🚨 CRITICAL ';
+        return '🚨 CRITICAL ';
     }
   }
 
-  // Get log history
+  // History helpers
   static List<YoLogEvent> getHistory() => List.unmodifiable(_history);
-
-  // Clear log history
-  static void clearHistory() {
-    _history.clear();
-  }
+  static void clearHistory() => _history.clear();
 
   // Export logs as string
   static String exportLogs() {
     final buffer = StringBuffer();
     for (final event in _history) {
       buffer.writeln(
-        '${event.timestamp} [${event.level.name}] ${event.tag ?? ''} ${event.message}',
+        '[YoLog] ${event.timestamp} [${event.level.name}] ${event.tag ?? ''} ${event.message}',
       );
-      if (event.data != null) {
-        buffer.writeln('  Data: ${event.data}');
-      }
-      if (event.error != null) {
-        buffer.writeln('  Error: ${event.error}');
-      }
+      if (event.data != null) buffer.writeln('[YoLog]   Data: ${event.data}');
+      if (event.error != null)
+        buffer.writeln('[YoLog]   Error: ${event.error}');
     }
     return buffer.toString();
   }
 
-  // Performance logging
+  // Performance tracking
   static T trackPerformance<T>(String operation, T Function() function) {
     final stopwatch = Stopwatch()..start();
     try {
@@ -206,6 +175,5 @@ enum YoLogLevel {
 
   const YoLogLevel(this.value);
   final int value;
-
   String get name => toString().split('.').last;
 }
