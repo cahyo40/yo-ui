@@ -182,11 +182,11 @@ class YoButton extends StatelessWidget {
     final base = Theme.of(ctx).textTheme;
     switch (size) {
       case YoButtonSize.small:
-        return base.labelSmall!.copyWith(color: textColor);
+        return base.bodySmall!.copyWith(color: textColor);
       case YoButtonSize.medium:
-        return base.labelMedium!.copyWith(color: textColor);
+        return base.bodyMedium!.copyWith(color: textColor);
       case YoButtonSize.large:
-        return base.labelLarge!.copyWith(color: textColor);
+        return base.bodyLarge!.copyWith(color: textColor);
     }
   }
 
