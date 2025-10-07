@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:yo_ui/yo_ui.dart';
 
 /// Versi tunggal (1 file) dari YoButton.
 /// - textColor : warna teks (null = pakai warna tema).
@@ -127,14 +128,14 @@ class YoButton extends StatelessWidget {
   ButtonStyle _getButtonStyle(BuildContext context) {
     final theme = Theme.of(context);
     final primary = theme.colorScheme.primary;
-    final onPrimary = theme.colorScheme.onPrimary;
+    // final onPrimary = theme.colorScheme.onPrimary;
     final disabledGray = theme.disabledColor;
 
     switch (variant) {
       case YoButtonVariant.primary:
         return ElevatedButton.styleFrom(
           backgroundColor: primary,
-          foregroundColor: onPrimary,
+
           disabledBackgroundColor: disabledGray,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -142,7 +143,7 @@ class YoButton extends StatelessWidget {
       case YoButtonVariant.secondary:
         return ElevatedButton.styleFrom(
           backgroundColor: theme.colorScheme.secondary,
-          foregroundColor: theme.colorScheme.onSecondary,
+
           disabledBackgroundColor: disabledGray,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -150,7 +151,7 @@ class YoButton extends StatelessWidget {
       case YoButtonVariant.outline:
         return ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          foregroundColor: textColor ?? primary,
+          foregroundColor: _foregroundColor(context),
           disabledBackgroundColor: Colors.transparent,
           side: BorderSide(color: onPressed != null ? primary : disabledGray),
           elevation: 0,
@@ -159,7 +160,7 @@ class YoButton extends StatelessWidget {
       case YoButtonVariant.ghost:
         return ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          foregroundColor: textColor ?? primary,
+          foregroundColor: _foregroundColor(context),
           disabledBackgroundColor: Colors.transparent,
           elevation: 0,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
@@ -169,12 +170,12 @@ class YoButton extends StatelessWidget {
 
   EdgeInsets _getPadding() {
     switch (size) {
-      case YoButtonSize.small:
+      case YoButtonSize.small: // font 12 → total tinggi ~32 dp
+        return const EdgeInsets.symmetric(horizontal: 10, vertical: 6);
+      case YoButtonSize.medium: // font 14 → total tinggi ~46 dp
         return const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
-      case YoButtonSize.medium:
+      case YoButtonSize.large: // font 16 → total tinggi ~54 dp
         return const EdgeInsets.symmetric(horizontal: 16, vertical: 12);
-      case YoButtonSize.large:
-        return const EdgeInsets.symmetric(horizontal: 24, vertical: 16);
     }
   }
 
@@ -182,11 +183,11 @@ class YoButton extends StatelessWidget {
     final base = Theme.of(ctx).textTheme;
     switch (size) {
       case YoButtonSize.small:
-        return base.bodySmall!.copyWith(color: textColor);
+        return base.bodySmall!.copyWith(color: ctx.textColor);
       case YoButtonSize.medium:
-        return base.bodyMedium!.copyWith(color: textColor);
+        return base.bodyMedium!.copyWith(color: ctx.textColor);
       case YoButtonSize.large:
-        return base.bodyLarge!.copyWith(color: textColor);
+        return base.bodyLarge!.copyWith(color: ctx.textColor);
     }
   }
 
@@ -210,6 +211,21 @@ class YoButton extends StatelessWidget {
       case YoButtonVariant.outline:
       case YoButtonVariant.ghost:
         return primary;
+    }
+  }
+
+  Color? _foregroundColor(BuildContext context) {
+    // kalau user secara eksplisit mau warna lain lewat ctor
+    if (textColor != null) return textColor;
+
+    // outline & ghost tetap pakai warna primer (atau onPrimary kalau disabled)
+    switch (variant) {
+      case YoButtonVariant.outline:
+      case YoButtonVariant.ghost:
+        return Theme.of(context).colorScheme.primary;
+      case YoButtonVariant.primary:
+      case YoButtonVariant.secondary:
+        return null; // <- biar warna didapat dari TextStyle
     }
   }
 }
