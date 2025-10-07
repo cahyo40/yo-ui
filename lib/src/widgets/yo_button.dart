@@ -181,13 +181,22 @@ class YoButton extends StatelessWidget {
 
   TextStyle _getTextStyle(BuildContext ctx) {
     final base = Theme.of(ctx).textTheme;
+
+    // pilih warna teks sesuai varian
+    final color =
+        (variant == YoButtonVariant.primary ||
+            variant == YoButtonVariant.secondary)
+        ? ctx
+              .colorTextBtn // <= baru
+        : ctx.textColor; // <= tetap
+
     switch (size) {
       case YoButtonSize.small:
-        return base.bodySmall!.copyWith(color: ctx.textColor);
+        return base.bodySmall!.copyWith(color: color);
       case YoButtonSize.medium:
-        return base.bodyMedium!.copyWith(color: ctx.textColor);
+        return base.bodyMedium!.copyWith(color: color);
       case YoButtonSize.large:
-        return base.bodyLarge!.copyWith(color: ctx.textColor);
+        return base.bodyLarge!.copyWith(color: color);
     }
   }
 
