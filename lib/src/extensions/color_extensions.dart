@@ -44,4 +44,8 @@ extension YoColorContext on BuildContext {
   // gradients
   Gradient get primaryGradient => YoColors.primaryGradient(this);
   Gradient get accentGradient => YoColors.accentGradient(this);
+
+  Color get colorTextBtn => Theme.of(this).brightness == Brightness.dark
+      ? textColor // dari yo_ui
+      : backgroundColor; // dari yo_ui
 }
