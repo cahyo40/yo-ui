@@ -1,25 +1,25 @@
 // ignore_for_file: avoid_print
 
+import 'dart:developer' as developer;
+
 import 'package:intl/intl.dart';
 
 class YoLogger {
-  static YoLogLevel _level = YoLogLevel.debug;
   static bool _enable = true;
-  static final List<YoLogEvent> _history = [];
-  static const int _maxHistorySize = 1000;
+  static YoLogLevel _level = YoLogLevel.debug;
 
-  static void setLevel(YoLogLevel level) => _level = level;
   static void enable() => _enable = true;
   static void disable() => _enable = false;
+  static void setLevel(YoLogLevel level) => _level = level;
 
-  static void debug(String message, {dynamic data, String? tag}) =>
-      _log(YoLogLevel.debug, message, data: data, tag: tag);
+  static void debug(String message, {String? tag}) =>
+      _log(YoLogLevel.debug, message, tag: tag);
 
-  static void info(String message, {dynamic data, String? tag}) =>
-      _log(YoLogLevel.info, message, data: data, tag: tag);
+  static void info(String message, {String? tag}) =>
+      _log(YoLogLevel.info, message, tag: tag);
 
-  static void warning(String message, {dynamic data, String? tag}) =>
-      _log(YoLogLevel.warning, message, data: data, tag: tag);
+  static void warning(String message, {String? tag}) =>
+      _log(YoLogLevel.warning, message, tag: tag);
 
   static void error(
     String message, {
@@ -50,120 +50,63 @@ class YoLogger {
   static void _log(
     YoLogLevel level,
     String message, {
-    dynamic data,
     dynamic error,
     StackTrace? stackTrace,
     String? tag,
   }) {
     if (!_enable || level.index < _level.index) return;
 
-    final event = YoLogEvent(
-      level: level,
-      message: message,
-      data: data,
-      error: error,
-      stackTrace: stackTrace,
-      tag: tag,
-      timestamp: DateTime.now().toLocal(),
-    );
+    final time = DateFormat('HH:mm:ss').format(DateTime.now().toLocal());
+    final tagText = tag != null ? '[$tag] ' : '';
 
-    // Add to history
-    _history.add(event);
-    if (_history.length > _maxHistorySize) _history.removeAt(0);
+    final emoji = _getEmoji(level);
+    final color = _getColor(level);
+    final reset = '\x1B[0m';
 
-    // Print to console
-    _printToConsole(event);
+    final output = '$color[YoLog] $emoji $time $tagText$message$reset';
+
+    developer.log(output, name: 'YoLog');
+
+    if (error != null) {
+      developer.log('$color[YoLog]   ↳ Error: $error$reset', name: 'YoLog');
+    }
+    if (stackTrace != null) {
+      developer.log(
+        '$color[YoLog]   ↳ StackTrace: $stackTrace$reset',
+        name: 'YoLog',
+      );
+    }
   }
 
-  static void _printToConsole(YoLogEvent event) {
-    final levelPrefix = _getLevelPrefix(event.level);
-    final time = DateFormat('HH:mm:ss').format(event.timestamp);
-    final tag = event.tag != null ? '[${event.tag}] ' : '';
-
-    print('[YoLog] $levelPrefix$time $tag${event.message}');
-
-    if (event.data != null) print('[YoLog]   Data: ${event.data}');
-    if (event.error != null) print('[YoLog]   Error: ${event.error}');
-    if (event.stackTrace != null)
-      print('[YoLog]   StackTrace: ${event.stackTrace}');
-  }
-
-  static String _getLevelPrefix(YoLogLevel level) {
+  static String _getEmoji(YoLogLevel level) {
     switch (level) {
       case YoLogLevel.debug:
-        return '🐛 DEBUG ';
+        return '🐛';
       case YoLogLevel.info:
-        return 'ℹ️ INFO ';
+        return '💡';
       case YoLogLevel.warning:
-        return '⚠️ WARN ';
+        return '⚠️';
       case YoLogLevel.error:
-        return '❌ ERROR ';
+        return '❌';
       case YoLogLevel.critical:
-        return '🚨 CRITICAL ';
+        return '🚨';
     }
   }
 
-  // History helpers
-  static List<YoLogEvent> getHistory() => List.unmodifiable(_history);
-  static void clearHistory() => _history.clear();
-
-  // Export logs as string
-  static String exportLogs() {
-    final buffer = StringBuffer();
-    for (final event in _history) {
-      buffer.writeln(
-        '[YoLog] ${event.timestamp} [${event.level.name}] ${event.tag ?? ''} ${event.message}',
-      );
-      if (event.data != null) buffer.writeln('[YoLog]   Data: ${event.data}');
-      if (event.error != null)
-        buffer.writeln('[YoLog]   Error: ${event.error}');
-    }
-    return buffer.toString();
-  }
-
-  // Performance tracking
-  static T trackPerformance<T>(String operation, T Function() function) {
-    final stopwatch = Stopwatch()..start();
-    try {
-      return function();
-    } finally {
-      stopwatch.stop();
-      debug('$operation completed in ${stopwatch.elapsedMilliseconds}ms');
+  static String _getColor(YoLogLevel level) {
+    switch (level) {
+      case YoLogLevel.debug:
+        return '\x1B[36m'; // cyan
+      case YoLogLevel.info:
+        return '\x1B[32m'; // green
+      case YoLogLevel.warning:
+        return '\x1B[33m'; // yellow
+      case YoLogLevel.error:
+        return '\x1B[31m'; // red
+      case YoLogLevel.critical:
+        return '\x1B[35m'; // magenta
     }
   }
-
-  static Future<T> trackPerformanceAsync<T>(
-    String operation,
-    Future<T> Function() function,
-  ) async {
-    final stopwatch = Stopwatch()..start();
-    try {
-      return await function();
-    } finally {
-      stopwatch.stop();
-      debug('$operation completed in ${stopwatch.elapsedMilliseconds}ms');
-    }
-  }
-}
-
-class YoLogEvent {
-  final YoLogLevel level;
-  final String message;
-  final dynamic data;
-  final dynamic error;
-  final StackTrace? stackTrace;
-  final String? tag;
-  final DateTime timestamp;
-
-  YoLogEvent({
-    required this.level,
-    required this.message,
-    this.data,
-    this.error,
-    this.stackTrace,
-    this.tag,
-    required this.timestamp,
-  });
 }
 
 enum YoLogLevel {
@@ -175,5 +118,4 @@ enum YoLogLevel {
 
   const YoLogLevel(this.value);
   final int value;
-  String get name => toString().split('.').last;
 }
