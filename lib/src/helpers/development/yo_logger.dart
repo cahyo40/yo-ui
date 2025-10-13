@@ -1,7 +1,6 @@
 // ignore_for_file: avoid_print
 
 import 'dart:developer' as developer;
-
 import 'package:intl/intl.dart';
 
 class YoLogger {
@@ -21,31 +20,11 @@ class YoLogger {
   static void warning(String message, {String? tag}) =>
       _log(YoLogLevel.warning, message, tag: tag);
 
-  static void error(
-    String message, {
-    dynamic error,
-    StackTrace? stackTrace,
-    String? tag,
-  }) => _log(
-    YoLogLevel.error,
-    message,
-    error: error,
-    stackTrace: stackTrace,
-    tag: tag,
-  );
+  static void error(String message, {dynamic error, StackTrace? stackTrace, String? tag}) =>
+      _log(YoLogLevel.error, message, error: error, stackTrace: stackTrace, tag: tag);
 
-  static void critical(
-    String message, {
-    dynamic error,
-    StackTrace? stackTrace,
-    String? tag,
-  }) => _log(
-    YoLogLevel.critical,
-    message,
-    error: error,
-    stackTrace: stackTrace,
-    tag: tag,
-  );
+  static void critical(String message, {dynamic error, StackTrace? stackTrace, String? tag}) =>
+      _log(YoLogLevel.critical, message, error: error, stackTrace: stackTrace, tag: tag);
 
   static void _log(
     YoLogLevel level,
@@ -63,18 +42,15 @@ class YoLogger {
     final color = _getColor(level);
     final reset = '\x1B[0m';
 
-    final output = '$color[YoLog] $emoji $time $tagText$message$reset';
+    final output = '$color$emoji $time $tagText$message$reset';
 
     developer.log(output, name: 'YoLog');
 
     if (error != null) {
-      developer.log('$color[YoLog]   ↳ Error: $error$reset', name: 'YoLog');
+      developer.log('$color  ↳ Error: $error$reset', name: 'YoLog');
     }
     if (stackTrace != null) {
-      developer.log(
-        '$color[YoLog]   ↳ StackTrace: $stackTrace$reset',
-        name: 'YoLog',
-      );
+      developer.log('$color  ↳ StackTrace: $stackTrace$reset', name: 'YoLog');
     }
   }
 
