@@ -1,156 +1,206 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../yo_ui.dart';
+import '../../yo_ui_base.dart';
 
 class YoTextTheme {
-  // Font Families
-  static const String fontFamilyPrimary = 'Poppins';
-  static const String fontFamilySecondary = 'Inter';
-  static const String fontFamilyMono = 'Space Mono';
+  /* 1. FONT REGISTRY (bisa diubah consumer) --------------------------- */
+  static String _primary = 'Poppins';
+  static String _secondary = 'Inter';
+  static String _mono = 'Space Mono';
 
-  // Display - Theme aware
-  static TextStyle displayLarge(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 57,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  /// Panggil 1x di main() jika ingin custom font
+  static void setFontFamily({
+    String? primary,
+    String? secondary,
+    String? mono,
+  }) {
+    if (primary != null) _primary = primary;
+    if (secondary != null) _secondary = secondary;
+    if (mono != null) _mono = mono;
+  }
+
+  /* 2. PRIVATE HELPER (warna, height, letterSpacing) ------------------ */
+  static TextStyle _style(
+    BuildContext context, {
+    required String family,
+    required double size,
+    required FontWeight weight,
+    double? height,
+    double? letterSpacing,
+    Color? color,
+  }) => GoogleFonts.getFont(
+    family,
+    fontSize: size,
+    fontWeight: weight,
+    height: height,
+    letterSpacing: letterSpacing,
+    color: color ?? YoColors.text(context),
+  );
+
+  /* 3. DISPLAY ------------------------------------------------------- */
+  static TextStyle displayLarge(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 57,
+    weight: FontWeight.w400,
+    height: 1.15,
     letterSpacing: -0.25,
   );
 
-  static TextStyle displayMedium(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 45,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  static TextStyle displayMedium(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 45,
+    weight: FontWeight.w400,
+    height: 1.15,
   );
 
-  static TextStyle displaySmall(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 36,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  static TextStyle displaySmall(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 36,
+    weight: FontWeight.w400,
+    height: 1.15,
   );
 
-  // Headline - Theme aware
-  static TextStyle headlineLarge(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 32,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  /* 4. HEADLINE ------------------------------------------------------ */
+  static TextStyle headlineLarge(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 32,
+    weight: FontWeight.w400,
+    height: 1.2,
   );
 
-  static TextStyle headlineMedium(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 28,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  static TextStyle headlineMedium(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 28,
+    weight: FontWeight.w400,
+    height: 1.2,
   );
 
-  static TextStyle headlineSmall(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 24,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  static TextStyle headlineSmall(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 24,
+    weight: FontWeight.w400,
+    height: 1.2,
   );
 
-  // Title - Theme aware
-  static TextStyle titleLarge(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 22,
-    fontWeight: FontWeight.w500,
-    color: YoColors.text(context),
-  );
-
-  static TextStyle titleMedium(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 16,
-    fontWeight: FontWeight.w500,
-    color: YoColors.text(context),
+  /* 5. TITLE --------------------------------------------------------- */
+  static TextStyle titleLarge(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 22,
+    weight: FontWeight.w500,
+    height: 1.2,
     letterSpacing: 0.15,
   );
 
-  static TextStyle titleSmall(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyPrimary,
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    color: YoColors.text(context),
+  static TextStyle titleMedium(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 16,
+    weight: FontWeight.w500,
+    height: 1.2,
+    letterSpacing: 0.15,
+  );
+
+  static TextStyle titleSmall(BuildContext context) => _style(
+    context,
+    family: _primary,
+    size: 14,
+    weight: FontWeight.w500,
+    height: 1.2,
     letterSpacing: 0.1,
   );
 
-  // Body - Theme aware
-  static TextStyle bodyLarge(BuildContext context) => GoogleFonts.getFont(
-    fontFamilySecondary,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  /* 6. BODY ---------------------------------------------------------- */
+  static TextStyle bodyLarge(BuildContext context) => _style(
+    context,
+    family: _secondary,
+    size: 16,
+    weight: FontWeight.w400,
+    height: 1.4,
     letterSpacing: 0.5,
   );
 
-  static TextStyle bodyMedium(BuildContext context) => GoogleFonts.getFont(
-    fontFamilySecondary,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  static TextStyle bodyMedium(BuildContext context) => _style(
+    context,
+    family: _secondary,
+    size: 14,
+    weight: FontWeight.w400,
+    height: 1.4,
     letterSpacing: 0.25,
   );
 
-  static TextStyle bodySmall(BuildContext context) => GoogleFonts.getFont(
-    fontFamilySecondary,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
-    color: YoColors.gray400(context),
+  static TextStyle bodySmall(BuildContext context) => _style(
+    context,
+    family: _secondary,
+    size: 12,
+    weight: FontWeight.w400,
+    height: 1.4,
     letterSpacing: 0.4,
+    color: YoColors.gray400(context),
   );
 
-  // Label - Theme aware
-  static TextStyle labelLarge(BuildContext context) => GoogleFonts.getFont(
-    fontFamilySecondary,
-    fontSize: 14,
-    fontWeight: FontWeight.w500,
-    color: YoColors.text(context),
+  /* 7. LABEL --------------------------------------------------------- */
+  static TextStyle labelLarge(BuildContext context) => _style(
+    context,
+    family: _secondary,
+    size: 14,
+    weight: FontWeight.w500,
+    height: 1.2,
     letterSpacing: 0.1,
   );
 
-  static TextStyle labelMedium(BuildContext context) => GoogleFonts.getFont(
-    fontFamilySecondary,
-    fontSize: 12,
-    fontWeight: FontWeight.w500,
-    color: YoColors.text(context),
+  static TextStyle labelMedium(BuildContext context) => _style(
+    context,
+    family: _secondary,
+    size: 12,
+    weight: FontWeight.w500,
+    height: 1.2,
     letterSpacing: 0.5,
   );
 
-  static TextStyle labelSmall(BuildContext context) => GoogleFonts.getFont(
-    fontFamilySecondary,
-    fontSize: 11,
-    fontWeight: FontWeight.w500,
-    color: YoColors.text(context),
+  static TextStyle labelSmall(BuildContext context) => _style(
+    context,
+    family: _secondary,
+    size: 11,
+    weight: FontWeight.w500,
+    height: 1.2,
     letterSpacing: 0.5,
   );
 
-  // Mono (Untuk angka/currency) - Theme aware
-  static TextStyle monoLarge(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyMono,
-    fontSize: 16,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  /* 8. MONO (angka, currency, dsb.) ---------------------------------- */
+  static TextStyle monoLarge(BuildContext context) => _style(
+    context,
+    family: _mono,
+    size: 16,
+    weight: FontWeight.w400,
+    height: 1.2,
   );
 
-  static TextStyle monoMedium(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyMono,
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-    color: YoColors.text(context),
+  static TextStyle monoMedium(BuildContext context) => _style(
+    context,
+    family: _mono,
+    size: 14,
+    weight: FontWeight.w400,
+    height: 1.2,
   );
 
-  static TextStyle monoSmall(BuildContext context) => GoogleFonts.getFont(
-    fontFamilyMono,
-    fontSize: 12,
-    fontWeight: FontWeight.w400,
+  static TextStyle monoSmall(BuildContext context) => _style(
+    context,
+    family: _mono,
+    size: 12,
+    weight: FontWeight.w400,
+    height: 1.2,
     color: YoColors.gray400(context),
   );
 
-  // Get complete text theme
+  /* 9. GENERATE TEXT THEME (untuk ThemeData) ------------------------ */
   static TextTheme textTheme(BuildContext context) => TextTheme(
     displayLarge: displayLarge(context),
     displayMedium: displayMedium(context),

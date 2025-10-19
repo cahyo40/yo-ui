@@ -4,10 +4,12 @@ import 'package:yo_ui/yo_ui.dart';
 /// Versi tunggal (1 file) dari YoButton.
 /// - textColor : warna teks (null = pakai warna tema).
 /// - icon      : widget ikon opsional.
-/// - iconPosition : "left" atau "right".
-enum YoButtonVariant { primary, secondary, outline, ghost }
+/// - iconPosition : kiri / kanan (enum).
+enum YoButtonVariant { primary, secondary, outline, ghost, custom }
 
 enum YoButtonSize { small, medium, large }
+
+enum IconPosition { left, right }
 
 class YoButton extends StatelessWidget {
   final String text;
@@ -15,8 +17,9 @@ class YoButton extends StatelessWidget {
   final YoButtonVariant variant;
   final YoButtonSize size;
   final Widget? icon;
-  final String iconPosition; // "left" atau "right"
-  final Color? textColor; // <— tambahan
+  final IconPosition iconPosition;
+  final Color? textColor;
+  final Color? backgroundColor; // <--- untuk variant custom
   final bool isLoading;
   final bool expanded;
 
@@ -27,8 +30,9 @@ class YoButton extends StatelessWidget {
     this.variant = YoButtonVariant.primary,
     this.size = YoButtonSize.medium,
     this.icon,
-    this.iconPosition = "left",
+    this.iconPosition = IconPosition.left,
     this.textColor,
+    this.backgroundColor,
     this.isLoading = false,
     this.expanded = false,
   });
@@ -40,11 +44,12 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
-    this.iconPosition = "left",
+    this.iconPosition = IconPosition.left,
     this.textColor,
     this.isLoading = false,
     this.expanded = false,
-  }) : variant = YoButtonVariant.primary;
+  }) : variant = YoButtonVariant.primary,
+       backgroundColor = null;
 
   const YoButton.secondary({
     super.key,
@@ -52,11 +57,12 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
-    this.iconPosition = "left",
+    this.iconPosition = IconPosition.left,
     this.textColor,
     this.isLoading = false,
     this.expanded = false,
-  }) : variant = YoButtonVariant.secondary;
+  }) : variant = YoButtonVariant.secondary,
+       backgroundColor = null;
 
   const YoButton.outline({
     super.key,
@@ -64,11 +70,12 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
-    this.iconPosition = "left",
+    this.iconPosition = IconPosition.left,
     this.textColor,
     this.isLoading = false,
     this.expanded = false,
-  }) : variant = YoButtonVariant.outline;
+  }) : variant = YoButtonVariant.outline,
+       backgroundColor = null;
 
   const YoButton.ghost({
     super.key,
@@ -76,12 +83,27 @@ class YoButton extends StatelessWidget {
     required this.onPressed,
     this.size = YoButtonSize.medium,
     this.icon,
-    this.iconPosition = "left",
+    this.iconPosition = IconPosition.left,
     this.textColor,
     this.isLoading = false,
     this.expanded = false,
-  }) : variant = YoButtonVariant.ghost;
+  }) : variant = YoButtonVariant.ghost,
+       backgroundColor = null;
 
+  /// Constructor untuk custom warna background
+  /// Constructor untuk custom warna background
+  const YoButton.custom({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    this.backgroundColor, // <-- tidak lagi required
+    this.size = YoButtonSize.medium,
+    this.icon,
+    this.iconPosition = IconPosition.left,
+    this.textColor,
+    this.isLoading = false,
+    this.expanded = false,
+  }) : variant = YoButtonVariant.custom;
   @override
   Widget build(BuildContext context) {
     final buttonStyle = _getButtonStyle(context);
@@ -89,21 +111,16 @@ class YoButton extends StatelessWidget {
     final textStyle = _getTextStyle(context);
 
     Widget contents = isLoading
-        ? SizedBox(
+        ? const SizedBox(
             width: 20,
             height: 20,
-            child: CircularProgressIndicator(
-              strokeWidth: 2,
-              color: _loaderColor(context),
-            ),
+            child: CircularProgressIndicator(strokeWidth: 2),
           )
         : Row(
             mainAxisSize: expanded ? MainAxisSize.max : MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: _textWithIcon(textStyle),
           );
-
-    if (expanded) contents = Expanded(child: contents);
 
     return ElevatedButton(
       onPressed: isLoading ? null : onPressed,
@@ -120,7 +137,7 @@ class YoButton extends StatelessWidget {
 
     if (icon == null) return [textWidget];
 
-    return iconPosition.toLowerCase() == "right"
+    return iconPosition == IconPosition.right
         ? [textWidget, gap, icon!]
         : [icon!, gap, textWidget];
   }
@@ -128,25 +145,22 @@ class YoButton extends StatelessWidget {
   ButtonStyle _getButtonStyle(BuildContext context) {
     final theme = Theme.of(context);
     final primary = theme.colorScheme.primary;
-    // final onPrimary = theme.colorScheme.onPrimary;
     final disabledGray = theme.disabledColor;
 
     switch (variant) {
       case YoButtonVariant.primary:
         return ElevatedButton.styleFrom(
           backgroundColor: primary,
-
           disabledBackgroundColor: disabledGray,
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: _shape(),
         );
       case YoButtonVariant.secondary:
         return ElevatedButton.styleFrom(
           backgroundColor: theme.colorScheme.secondary,
-
           disabledBackgroundColor: disabledGray,
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: _shape(),
         );
       case YoButtonVariant.outline:
         return ElevatedButton.styleFrom(
@@ -155,7 +169,7 @@ class YoButton extends StatelessWidget {
           disabledBackgroundColor: Colors.transparent,
           side: BorderSide(color: onPressed != null ? primary : disabledGray),
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: _shape(),
         );
       case YoButtonVariant.ghost:
         return ElevatedButton.styleFrom(
@@ -163,32 +177,57 @@ class YoButton extends StatelessWidget {
           foregroundColor: _foregroundColor(context),
           disabledBackgroundColor: Colors.transparent,
           elevation: 0,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          shape: _shape(),
+        );
+      case YoButtonVariant.custom:
+        final bg = backgroundColor ?? Theme.of(context).colorScheme.primary;
+        return ElevatedButton.styleFrom(
+          backgroundColor: bg,
+          disabledBackgroundColor: bg.withValues(alpha: 0.32),
+          elevation: 0,
+          shape: _shape(),
         );
     }
   }
 
+  OutlinedBorder _shape() =>
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
+
   EdgeInsets _getPadding() {
     switch (size) {
-      case YoButtonSize.small: // font 12 → total tinggi ~32 dp
+      case YoButtonSize.small:
         return const EdgeInsets.symmetric(horizontal: 10, vertical: 6);
-      case YoButtonSize.medium: // font 14 → total tinggi ~46 dp
+      case YoButtonSize.medium:
         return const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
-      case YoButtonSize.large: // font 16 → total tinggi ~54 dp
+      case YoButtonSize.large:
         return const EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+    }
+  }
+
+  Color? _foregroundColor(BuildContext context) {
+    // Jika user paksa textColor, itu yang dipakai
+    if (textColor != null) return textColor;
+
+    switch (variant) {
+      case YoButtonVariant.outline:
+      case YoButtonVariant.ghost:
+        return Theme.of(context).colorScheme.primary;
+      case YoButtonVariant.primary:
+      case YoButtonVariant.secondary:
+      case YoButtonVariant.custom:
+        return null; // biar warna didapat dari TextStyle
     }
   }
 
   TextStyle _getTextStyle(BuildContext ctx) {
     final base = Theme.of(ctx).textTheme;
-
-    // pilih warna teks sesuai varian
     final color =
-        (variant == YoButtonVariant.primary ||
-            variant == YoButtonVariant.secondary)
-        ? ctx
-              .colorTextBtn // <= baru
-        : ctx.textColor; // <= tetap
+        textColor ??
+        ((variant == YoButtonVariant.primary ||
+                variant == YoButtonVariant.secondary ||
+                variant == YoButtonVariant.custom)
+            ? ctx.colorTextBtn
+            : ctx.textColor);
 
     switch (size) {
       case YoButtonSize.small:
@@ -208,33 +247,6 @@ class YoButton extends StatelessWidget {
         return 8;
       case YoButtonSize.large:
         return 12;
-    }
-  }
-
-  Color _loaderColor(BuildContext context) {
-    final primary = Theme.of(context).colorScheme.primary;
-    switch (variant) {
-      case YoButtonVariant.primary:
-      case YoButtonVariant.secondary:
-        return Colors.white;
-      case YoButtonVariant.outline:
-      case YoButtonVariant.ghost:
-        return primary;
-    }
-  }
-
-  Color? _foregroundColor(BuildContext context) {
-    // kalau user secara eksplisit mau warna lain lewat ctor
-    if (textColor != null) return textColor;
-
-    // outline & ghost tetap pakai warna primer (atau onPrimary kalau disabled)
-    switch (variant) {
-      case YoButtonVariant.outline:
-      case YoButtonVariant.ghost:
-        return Theme.of(context).colorScheme.primary;
-      case YoButtonVariant.primary:
-      case YoButtonVariant.secondary:
-        return null; // <- biar warna didapat dari TextStyle
     }
   }
 }
