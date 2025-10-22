@@ -16,10 +16,15 @@ class YoLoadingOverlay extends StatelessWidget {
     this.overlayColor,
   });
 
-  static void show({required BuildContext context, String? message}) {
+  static void show({
+    required BuildContext context,
+    String? message,
+    bool barrierDismissible = false,
+  }) {
     showDialog(
       context: context,
-      barrierDismissible: false,
+      barrierDismissible: barrierDismissible,
+      barrierColor: Colors.black.withValues(alpha: 0.5),
       builder: (context) => _FullScreenLoading(message: message),
     );
   }
@@ -34,13 +39,10 @@ class YoLoadingOverlay extends StatelessWidget {
       children: [
         child,
         if (isLoading)
-          Positioned.fill(
-            child: Align(
-              alignment: Alignment.center,
-              child: Container(
-                color: overlayColor ?? Colors.black.withValues(alpha: 0.5),
-                child: Center(child: _LoadingContent(message: message)),
-              ),
+          Container(
+            color: overlayColor ?? Colors.black.withValues(alpha: 0.5),
+            child: Center(
+              child: _LoadingContent(message: message),
             ),
           ),
       ],
@@ -58,6 +60,7 @@ class _FullScreenLoading extends StatelessWidget {
     return Dialog(
       backgroundColor: Colors.transparent,
       elevation: 0,
+      insetPadding: const EdgeInsets.all(40),
       child: _LoadingContent(message: message),
     );
   }
@@ -82,7 +85,11 @@ class _LoadingContent extends StatelessWidget {
           const YoLoading.spinner(size: 32),
           if (message != null) ...[
             const SizedBox(height: 16),
-            YoText.bodyMedium(message!, color: YoColors.gray600(context)),
+            YoText.bodyMedium(
+              message!,
+              color: YoColors.gray600(context),
+              align: TextAlign.center,
+            ),
           ],
         ],
       ),

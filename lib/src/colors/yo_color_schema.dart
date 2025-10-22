@@ -90,7 +90,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe6e6fa),
-      background: Color(0xFF0f0f23),
+      background: Color(0xFF0a0a1a),
       primary: Color(0xFF7c6fff),
       secondary: Color(0xFFa49bff),
       accent: Color(0xFFff6eb9),
@@ -108,7 +108,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe0fff5),
-      background: Color(0xFF002218),
+      background: Color(0xFF001a12),
       primary: Color(0xFF00c78e),
       secondary: Color(0xFF5de5dc),
       accent: Color(0xFFffb03d),
@@ -126,7 +126,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFffe6eb),
-      background: Color(0xFF1f0005),
+      background: Color(0xFF1a0004),
       primary: Color(0xFFff1a47),
       secondary: Color(0xFFff8fb0),
       accent: Color(0xFF00d9e6),
@@ -144,7 +144,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf0f2ff),
-      background: Color(0xFF0a0c15),
+      background: Color(0xFF080a11),
       primary: Color(0xFF5a6abf),
       secondary: Color(0xFF8a94e4),
       accent: Color(0xFFffd063),
@@ -162,7 +162,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfdffe6),
-      background: Color(0xFF121200),
+      background: Color(0xFF0d0d00),
       primary: Color(0xFF8bc34a),
       secondary: Color(0xFFc3d84b),
       accent: Color(0xFFff8555),
@@ -180,7 +180,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf0f0ff),
-      background: Color(0xFF07071e),
+      background: Color(0xFF050516),
       primary: Color(0xFFff0984),
       secondary: Color(0xFF5c6bc0),
       accent: Color(0xFF1ff8df),
@@ -198,7 +198,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe6fff7),
-      background: Color(0xFF001a12),
+      background: Color(0xFF00140e),
       primary: Color(0xFF00d9a0),
       secondary: Color(0xFF73ffd2),
       accent: Color(0xFFff9bc0),
@@ -216,7 +216,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfdf2e6),
-      background: Color(0xFF1a120c),
+      background: Color(0xFF140e08),
       primary: Color(0xFFc0875c),
       secondary: Color(0xFFe8b880),
       accent: Color(0xFF7bc097),
@@ -234,7 +234,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe6f2ff),
-      background: Color(0xFF001429),
+      background: Color(0xFF001225),
       primary: Color(0xFFff8a7a),
       secondary: Color(0xFF004c8c),
       accent: Color(0xFFffe18a),
@@ -252,7 +252,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfff8e1),
-      background: Color(0xFF1a1200),
+      background: Color(0xFF140e00),
       primary: Color(0xFFffc733),
       secondary: Color(0xFFff981a),
       accent: Color(0xFFa1d144),
@@ -270,7 +270,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFffeef2),
-      background: Color(0xFF1a080d),
+      background: Color(0xFF15060a),
       primary: Color(0xFFff7599),
       secondary: Color(0xFFe8b5cc),
       accent: Color(0xFF5de5dc),
@@ -288,7 +288,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe6fffe),
-      background: Color(0xFF001a1a),
+      background: Color(0xFF001515),
       primary: Color(0xFF00a3a3),
       secondary: Color(0xFF40b070),
       accent: Color(0xFFffb950),
@@ -324,7 +324,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe6f1ff),
-      background: Color(0xFF0a1929),
+      background: Color(0xFF071220),
       primary: Color(0xFF8a84ff),
       secondary: Color(0xFFff84a4),
       accent: Color(0xFF5cf5aa),
@@ -332,21 +332,20 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
   },
 
   // LuxuryMinimal - Luxury & Premium (Elegant & Sophisticated)
-  // LuxuryMinimal - Luxury & Premium (Elegant & Sophisticated)
   YoColorScheme.luxuryMinimal: {
     Brightness.light: const YoCorePalette(
       text: Color(0xFF000000),
       background: Color(0xFFffffff),
       primary: Color(0xFF000000),
       secondary: Color(0xFF666666),
-      accent: Color(0xFFEFBF04), // Gold hex code yang valid
+      accent: Color(0xFFEFBF04),
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFffffff),
       background: Color(0xFF000000),
       primary: Color(0xFFffffff),
       secondary: Color(0xFFcccccc),
-      accent: Color(0xFFEFBF04), // Gold hex code yang valid
+      accent: Color(0xFFEFBF04),
     ),
   },
 
@@ -361,7 +360,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFebf8ff),
-      background: Color(0xFF1a202c),
+      background: Color(0xFF0d1520),
       primary: Color(0xFF63b3ed),
       secondary: Color(0xFFfc8181),
       accent: Color(0xFF68d391),
@@ -379,7 +378,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfed7d7),
-      background: Color(0xFF742a2a),
+      background: Color(0xFF2a0f0f),
       primary: Color(0xFFfc8181),
       secondary: Color(0xFFf6ad55),
       accent: Color(0xFF68d391),
@@ -397,7 +396,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf7fafc),
-      background: Color(0xFF1a202c),
+      background: Color(0xFF0d1018),
       primary: Color(0xFFcbd5e0),
       secondary: Color(0xFFa0aec0),
       accent: Color(0xFFfc8181),
@@ -415,7 +414,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFffffff),
-      background: Color(0xFF0f0f1e),
+      background: Color(0xFF0a0a14),
       primary: Color(0xFF533483),
       secondary: Color(0xFFff006e),
       accent: Color(0xFF00f5ff),
@@ -433,7 +432,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf1f5f9),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f1a),
       primary: Color(0xFFfbbf24),
       secondary: Color(0xFF818cf8),
       accent: Color(0xFF34d399),
@@ -451,7 +450,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFddd6fe),
-      background: Color(0xFF312e81),
+      background: Color(0xFF25205a),
       primary: Color(0xFFfbbf24),
       secondary: Color(0xFFf87171),
       accent: Color(0xFF4ade80),
@@ -469,7 +468,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf1f5f9),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f17),
       primary: Color(0xFFef4444),
       secondary: Color(0xFF3b82f6),
       accent: Color(0xFF10b981),
@@ -487,7 +486,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf5d0fe),
-      background: Color(0xFF581c87),
+      background: Color(0xFF2d0f44),
       primary: Color(0xFFc084fc),
       secondary: Color(0xFFf472b6),
       accent: Color(0xFF22d3ee),
@@ -505,9 +504,9 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfed7aa),
-      background: Color(0xFF7c2d12),
+      background: Color(0xFF3d1609),
       primary: Color(0xFFfb923c),
-      secondary: Color(0xFFfb923c),
+      secondary: Color(0xFFfdba74),
       accent: Color(0xFF22d3ee),
     ),
   },
@@ -523,7 +522,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf3f4f6),
-      background: Color(0xFF111827),
+      background: Color(0xFF0d121f),
       primary: Color(0xFF3b82f6),
       secondary: Color(0xFF6b7280),
       accent: Color(0xFF34d399),
@@ -541,7 +540,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFdcfce7),
-      background: Color(0xFF14532d),
+      background: Color(0xFF0a2916),
       primary: Color(0xFF22c55e),
       secondary: Color(0xFFa3e635),
       accent: Color(0xFFfbbf24),
@@ -559,7 +558,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfce7f3),
-      background: Color(0xFFbe185d),
+      background: Color(0xFF5f0c2f),
       primary: Color(0xFFf472b6),
       secondary: Color(0xFFec4899),
       accent: Color(0xFFa78bfa),
@@ -577,7 +576,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe0f2fe),
-      background: Color(0xFF0c4a6e),
+      background: Color(0xFF062537),
       primary: Color(0xFF38bdf8),
       secondary: Color(0xFFa78bfa),
       accent: Color(0xFFf87171),
@@ -595,9 +594,9 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfef3c7),
-      background: Color(0xFF92400e),
+      background: Color(0xFF492007),
       primary: Color(0xFFf59e0b),
-      secondary: Color(0xFFf59e0b),
+      secondary: Color(0xFFd97706),
       accent: Color(0xFF10b981),
     ),
   },
@@ -615,7 +614,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFdbeafe),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f1a),
       primary: Color(0xFF3b82f6),
       secondary: Color(0xFFea580c),
       accent: Color(0xFF10b981),
@@ -633,7 +632,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFdcfce7),
-      background: Color(0xFF052e16),
+      background: Color(0xFF0a1f0e),
       primary: Color(0xFF22c55e),
       secondary: Color(0xFF84cc16),
       accent: Color(0xFFfbbf24),
@@ -651,7 +650,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfed7aa),
-      background: Color(0xFF431407),
+      background: Color(0xFF2d1609),
       primary: Color(0xFFf97316),
       secondary: Color(0xFFca8a04),
       accent: Color(0xFF9ca3af),
@@ -669,7 +668,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe2e8f0),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f17),
       primary: Color(0xFF38bdf8),
       secondary: Color(0xFF818cf8),
       accent: Color(0xFFfbbf24),
@@ -687,7 +686,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfce7f3),
-      background: Color(0xFF831843),
+      background: Color(0xFF420d28),
       primary: Color(0xFFf472b6),
       secondary: Color(0xFFec4899),
       accent: Color(0xFFfbbf24),
@@ -705,7 +704,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe0f2fe),
-      background: Color(0xFF0c4a6e),
+      background: Color(0xFF062537),
       primary: Color(0xFF38bdf8),
       secondary: Color(0xFF22d3ee),
       accent: Color(0xFFfbbf24),
@@ -723,7 +722,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFdbeafe),
-      background: Color(0xFF1e3a8a),
+      background: Color(0xFF0f1a45),
       primary: Color(0xFF3b82f6),
       secondary: Color(0xFF60a5fa),
       accent: Color(0xFFef4444),
@@ -741,7 +740,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe0f2fe),
-      background: Color(0xFF0c4a6e),
+      background: Color(0xFF062537),
       primary: Color(0xFF0ea5e9),
       secondary: Color(0xFF0891b2),
       accent: Color(0xFF10b981),
@@ -759,7 +758,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf3e8ff),
-      background: Color(0xFF581c87),
+      background: Color(0xFF2d0f44),
       primary: Color(0xFFa855f7),
       secondary: Color(0xFFc084fc),
       accent: Color(0xFFfbbf24),
@@ -777,9 +776,9 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfef3c7),
-      background: Color(0xFF92400e),
+      background: Color(0xFF492007),
       primary: Color(0xFFf59e0b),
-      secondary: Color(0xFFf59e0b),
+      secondary: Color(0xFFd97706),
       accent: Color(0xFFef4444),
     ),
   },
@@ -795,7 +794,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe0f2fe),
-      background: Color(0xFF0c4a6e),
+      background: Color(0xFF062537),
       primary: Color(0xFF22d3ee),
       secondary: Color(0xFF0891b2),
       accent: Color(0xFFa855f7),
@@ -813,7 +812,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfed7aa),
-      background: Color(0xFF7c2d12),
+      background: Color(0xFF2d1609),
       primary: Color(0xFFef4444),
       secondary: Color(0xFFf97316),
       accent: Color(0xFFeab308),
@@ -831,7 +830,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFdcfce7),
-      background: Color(0xFF14532d),
+      background: Color(0xFF0a2916),
       primary: Color(0xFF16a34a),
       secondary: Color(0xFF15803d),
       accent: Color(0xFFf59e0b),
@@ -849,7 +848,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf1f5f9),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f17),
       primary: Color(0xFF94a3b8),
       secondary: Color(0xFFcbd5e1),
       accent: Color(0xFFfbbf24),
@@ -867,7 +866,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfce7f3),
-      background: Color(0xFF831843),
+      background: Color(0xFF420d28),
       primary: Color(0xFFf472b6),
       secondary: Color(0xFFfbbf24),
       accent: Color(0xFF4ade80),
@@ -885,9 +884,9 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfef3c7),
-      background: Color(0xFF92400e),
+      background: Color(0xFF492007),
       primary: Color(0xFFf59e0b),
-      secondary: Color(0xFFf59e0b),
+      secondary: Color(0xFFd97706),
       accent: Color(0xFFef4444),
     ),
   },
@@ -903,7 +902,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf1f5f9),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f17),
       primary: Color(0xFF22d3ee),
       secondary: Color(0xFFa78bfa),
       accent: Color(0xFFf472b6),
@@ -921,7 +920,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFfef3c7),
-      background: Color(0xFF92400e),
+      background: Color(0xFF492007),
       primary: Color(0xFFfbbf24),
       secondary: Color(0xFFf59e0b),
       accent: Color(0xFFf97316),
@@ -939,7 +938,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFf3f4f6),
-      background: Color(0xFF111827),
+      background: Color(0xFF0d121f),
       primary: Color(0xFF9ca3af),
       secondary: Color(0xFFd1d5db),
       accent: Color(0xFF10b981),
@@ -957,7 +956,7 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
     ),
     Brightness.dark: const YoCorePalette(
       text: Color(0xFFe2e8f0),
-      background: Color(0xFF0f172a),
+      background: Color(0xFF0a0f17),
       primary: Color(0xFF4b5563),
       secondary: Color(0xFF6b7280),
       accent: Color(0xFFef4444),

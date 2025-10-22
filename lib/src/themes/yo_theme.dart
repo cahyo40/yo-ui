@@ -54,6 +54,7 @@ class YoTheme {
           elevation: 0,
         ),
       ),
+      textTheme: YoTextTheme.textTheme(ctx),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: pal.primary,
@@ -130,7 +131,7 @@ class YoTheme {
         onError: YoColors.white,
         surfaceContainerHighest: YoColors.darkGray100,
       ),
-      dropdownMenuTheme: YoDropdownTheme.light(ctx),
+      dropdownMenuTheme: YoDropdownTheme.dark(ctx),
       scaffoldBackgroundColor: pal.background,
       appBarTheme: AppBarTheme(
         backgroundColor: pal.background,
@@ -167,7 +168,7 @@ class YoTheme {
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           foregroundColor: pal.primary,
-          side: BorderSide(color: pal.text),
+          side: BorderSide(color: pal.primary),
           textStyle: const TextStyle(
             fontFamily: 'Inter',
             fontWeight: FontWeight.w500,
@@ -176,6 +177,7 @@ class YoTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
       ),
+      textTheme: YoTextTheme.textTheme(ctx),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: YoColors.darkGray50,

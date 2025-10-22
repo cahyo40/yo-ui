@@ -18,6 +18,7 @@ export 'src/layout/yo_spacing.dart';
 export 'src/text_themes/yo_text_theme.dart';
 export 'src/themes/yo_bottom_nav_theme.dart';
 export 'src/themes/yo_dropdown_theme.dart';
+export 'src/themes/yo_input_decoration.dart';
 export 'src/themes/yo_shadow.dart';
 export 'src/themes/yo_theme.dart';
 // Themes

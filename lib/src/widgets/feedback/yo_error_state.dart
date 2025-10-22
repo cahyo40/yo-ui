@@ -20,48 +20,64 @@ class YoErrorState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            padding: const EdgeInsets.all(16),
-            decoration: BoxDecoration(
-              color: YoColors.error(context).withValues(alpha: 0.1),
-              shape: BoxShape.circle,
-            ),
-            child: Icon(
-              Icons.error_outline,
-              size: 64,
-              color: YoColors.error(context),
-            ),
-          ),
-          const SizedBox(height: 24),
-          YoText.titleLarge(title, align: TextAlign.center),
-          const SizedBox(height: 8),
-          YoText.bodyMedium(
-            description,
-            align: TextAlign.center,
-            color: YoColors.gray600(context),
-          ),
-          if (error != null) ...[
-            const SizedBox(height: 16),
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: YoColors.gray100(context),
-                borderRadius: BorderRadius.circular(8),
+                color: YoColors.error(context).withValues(alpha: 0.1),
+                shape: BoxShape.circle,
               ),
-              child: YoText.bodySmall(
-                error.toString(),
-                color: YoColors.gray600(context),
+              child: Icon(
+                Icons.error_outline,
+                size: 64,
+                color: YoColors.error(context),
               ),
+            ),
+            const SizedBox(height: 24),
+            YoText.titleLarge(
+              title,
+              align: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 8),
+            YoText.bodyMedium(
+              description,
+              align: TextAlign.center,
+              color: YoColors.gray600(context),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            if (error != null) ...[
+              const SizedBox(height: 16),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: YoColors.gray100(context),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: YoText.bodySmall(
+                  error.toString(),
+                  color: YoColors.gray600(context),
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              ),
+            ],
+            const SizedBox(height: 24),
+            YoButton.primary(
+              text: actionText,
+              onPressed: onRetry,
+              size: YoButtonSize.medium,
             ),
           ],
-          const SizedBox(height: 24),
-          YoButton.primary(text: actionText, onPressed: onRetry),
-        ],
+        ),
       ),
     );
   }

@@ -11,6 +11,7 @@ class YoConfirmDialog extends StatelessWidget {
   final VoidCallback? onCancel;
   final Color? confirmColor;
   final bool isDestructive;
+  final Widget? icon;
 
   const YoConfirmDialog({
     super.key,
@@ -22,6 +23,7 @@ class YoConfirmDialog extends StatelessWidget {
     this.onCancel,
     this.confirmColor,
     this.isDestructive = false,
+    this.icon,
   });
 
   static Future<bool?> show({
@@ -32,9 +34,12 @@ class YoConfirmDialog extends StatelessWidget {
     String cancelText = 'Batal',
     Color? confirmColor,
     bool isDestructive = false,
+    Widget? icon,
+    bool barrierDismissible = true,
   }) async {
     return showDialog<bool>(
       context: context,
+      barrierDismissible: barrierDismissible,
       builder: (context) => YoConfirmDialog(
         title: title,
         content: content,
@@ -44,21 +49,32 @@ class YoConfirmDialog extends StatelessWidget {
         onCancel: () => Navigator.of(context).pop(false),
         confirmColor: confirmColor,
         isDestructive: isDestructive,
+        icon: icon,
       ),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final confirmButtonColor =
+        confirmColor ??
+        (isDestructive ? theme.colorScheme.error : theme.colorScheme.primary);
+
     return Dialog(
       backgroundColor: YoColors.background(context),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
       child: Padding(
         padding: const EdgeInsets.all(24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            if (icon != null) ...[
+              Center(child: icon),
+              const SizedBox(height: 16),
+            ],
             YoText.titleLarge(title),
             const SizedBox(height: 12),
             YoText.bodyMedium(content, color: YoColors.gray600(context)),
@@ -74,9 +90,10 @@ class YoConfirmDialog extends StatelessWidget {
                 ),
                 const SizedBox(width: 12),
                 Expanded(
-                  child: YoButton.primary(
+                  child: YoButton.custom(
                     text: confirmText,
                     onPressed: onConfirm,
+                    backgroundColor: confirmButtonColor,
                   ),
                 ),
               ],

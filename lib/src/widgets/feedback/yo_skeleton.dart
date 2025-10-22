@@ -38,12 +38,14 @@ class YoSkeleton extends StatelessWidget {
         borderRadius: borderRadius,
         color: YoColors.gray300(context),
       ),
-      child: type == YoSkeletonType.shimmer ? _ShimmerEffect() : null,
+      child: type == YoSkeletonType.shimmer ? const _ShimmerEffect() : null,
     );
   }
 }
 
 class _ShimmerEffect extends StatefulWidget {
+  const _ShimmerEffect();
+
   @override
   State<_ShimmerEffect> createState() => _ShimmerEffectState();
 }
@@ -101,7 +103,7 @@ class _SlidingGradientTransform extends GradientTransform {
   @override
   Matrix4 transform(Rect bounds, {TextDirection? textDirection}) {
     return Matrix4.translationValues(
-      bounds.width * percent - bounds.width,
+      bounds.width * 2 * percent - bounds.width,
       0.0,
       0.0,
     );

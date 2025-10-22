@@ -8,6 +8,7 @@ class YoDialog extends StatelessWidget {
   final List<Widget>? actions;
   final Widget? icon;
   final Color? iconColor;
+  final double? maxWidth;
 
   const YoDialog({
     super.key,
@@ -16,6 +17,7 @@ class YoDialog extends StatelessWidget {
     this.actions,
     this.icon,
     this.iconColor,
+    this.maxWidth,
   });
 
   static Future<T?> show<T>({
@@ -26,6 +28,7 @@ class YoDialog extends StatelessWidget {
     Widget? icon,
     Color? iconColor,
     bool barrierDismissible = true,
+    double? maxWidth,
   }) {
     return showDialog<T>(
       context: context,
@@ -36,6 +39,7 @@ class YoDialog extends StatelessWidget {
         actions: actions,
         icon: icon,
         iconColor: iconColor,
+        maxWidth: maxWidth,
       ),
     );
   }
@@ -45,47 +49,76 @@ class YoDialog extends StatelessWidget {
     return Dialog(
       backgroundColor: YoColors.background(context),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-      child: Padding(
-        padding: const EdgeInsets.all(24),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            if (icon != null) ...[
-              Center(
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color:
-                        iconColor?.withValues(alpha: 0.1) ??
-                        YoColors.primary(context).withValues(alpha: 0.1),
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconTheme(
-                    data: IconThemeData(
-                      color: iconColor ?? YoColors.primary(context),
-                      size: 24,
-                    ),
-                    child: icon!,
-                  ),
-                ),
+      insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+      child: ConstrainedBox(
+        constraints: BoxConstraints(maxWidth: maxWidth ?? 400),
+        child: Padding(
+          padding: const EdgeInsets.all(24),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              if (icon != null) ...[
+                _buildIcon(context),
+                const SizedBox(height: 16),
+              ],
+              YoText.titleLarge(
+                title,
+                align: TextAlign.center,
+                maxLines: 3,
+                overflow: TextOverflow.ellipsis,
               ),
-              const SizedBox(height: 16),
+              const SizedBox(height: 12),
+              YoText.bodyMedium(
+                content,
+                align: TextAlign.center,
+                color: YoColors.gray600(context),
+                maxLines: 10,
+                overflow: TextOverflow.ellipsis,
+              ),
+              if (actions != null && actions!.isNotEmpty) ...[
+                const SizedBox(height: 24),
+                _buildActions(context),
+              ],
             ],
-            YoText.titleLarge(title, align: TextAlign.center),
-            const SizedBox(height: 12),
-            YoText.bodyMedium(
-              content,
-              align: TextAlign.center,
-              color: YoColors.gray600(context),
-            ),
-            if (actions != null) ...[
-              const SizedBox(height: 24),
-              Row(mainAxisAlignment: MainAxisAlignment.end, children: actions!),
-            ],
-          ],
+          ),
         ),
       ),
+    );
+  }
+
+  Widget _buildIcon(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color:
+            iconColor?.withValues(alpha: 0.1) ??
+            Theme.of(context).colorScheme.primary.withValues(alpha: 0.1),
+        shape: BoxShape.circle,
+      ),
+      child: IconTheme(
+        data: IconThemeData(
+          color: iconColor ?? Theme.of(context).colorScheme.primary,
+          size: 24,
+        ),
+        child: icon!,
+      ),
+    );
+  }
+
+  Widget _buildActions(BuildContext context) {
+    if (actions!.length == 1) {
+      return SizedBox(width: double.infinity, child: actions!.first);
+    }
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children:
+          actions!
+              .map((action) => Flexible(child: action))
+              .expand((widget) => [widget, const SizedBox(width: 12)])
+              .toList()
+            ..removeLast(), // Remove last SizedBox
     );
   }
 }

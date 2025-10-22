@@ -49,30 +49,44 @@ class YoEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(32),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (icon != null) ...[
-            IconTheme(
-              data: IconThemeData(size: 64, color: _getIconColor(context)),
-              child: icon!,
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (icon != null) ...[
+              IconTheme(
+                data: IconThemeData(size: 64, color: _getIconColor(context)),
+                child: icon!,
+              ),
+              const SizedBox(height: 24),
+            ],
+            YoText.titleLarge(
+              title,
+              align: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            const SizedBox(height: 24),
+            const SizedBox(height: 8),
+            YoText.bodyMedium(
+              description,
+              align: TextAlign.center,
+              color: YoColors.gray600(context),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
+            ),
+            if (actionText != null && onAction != null) ...[
+              const SizedBox(height: 24),
+              YoButton.primary(
+                text: actionText!,
+                onPressed: onAction,
+                size: YoButtonSize.medium,
+              ),
+            ],
           ],
-          YoText.titleLarge(title, align: TextAlign.center),
-          const SizedBox(height: 8),
-          YoText.bodyMedium(
-            description,
-            align: TextAlign.center,
-            color: YoColors.gray600(context),
-          ),
-          if (actionText != null && onAction != null) ...[
-            const SizedBox(height: 24),
-            YoButton.primary(text: actionText!, onPressed: onAction),
-          ],
-        ],
+        ),
       ),
     );
   }

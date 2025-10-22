@@ -21,4 +21,18 @@ class YoResponsive {
     if (isTablet(context) && tablet != null) return tablet;
     return mobile;
   }
+
+  static Widget responsiveWidget({
+    required BuildContext context,
+    required Widget mobile,
+    Widget? tablet,
+    Widget? desktop,
+  }) {
+    return responsiveValue<Widget>(
+      context,
+      mobile: mobile,
+      tablet: tablet,
+      desktop: desktop,
+    );
+  }
 }
