@@ -54,6 +54,71 @@ enum YoColorScheme {
   elegantGold, // Elegant & Luxury - Emas & Megah
   minimalistClean, // Minimalist & Clean - Bersih & Sederhana
   urbanStreet, // Urban & Street - Kota & Gaya
+  corporateBlue, // Corporate & Business Apps
+  financeTrust, // Banking & Finance
+  healthcareClean, // Healthcare & Medical
+  educationVibrant, // Education & Learning
+  productivityFocus, // Productivity & Tasks
+  // Technology & Digital
+  techModern, // Tech & SaaS Platforms
+  developerDark, // Developer Tools
+  startupEnergy, // Startups & Innovation
+  cryptoBold, // Cryptocurrency
+  aiFuturistic, // AI & Machine Learning
+  // Social & Entertainment
+  socialWarm, // Social Media
+  datingRomantic, // Dating Apps
+  musicDynamic, // Music Streaming
+  gamingVibrant, // Gaming & Esports
+  streamingDark, // Video Streaming
+  // Lifestyle & Daily Use
+  fitnessMotivation, // Fitness & Health
+  foodAppetizing, // Food Delivery
+  travelAdventure, // Travel & Booking
+  shoppingRetail, // E-commerce & Retail
+  weatherCalm, // Weather Apps
+  // Creative & Design
+  creativeArtistic, // Design Tools
+  photographyElegant, // Photo Editing
+  writingFocus, // Writing Apps
+  artGallery2, // Art Platforms
+  fashionTrendy2, // Fashion & Style
+  // Specialized Industries
+  realEstateLuxury, // Real Estate
+  automotivePower, // Automotive
+  aviationSky2, // Aviation
+  marineDeep, // Marine & Nautical
+  spaceCosmic2, // Space & Astronomy
+  // Community & Services
+  communityFriendly, // Community Apps
+  newsProfessional, // News & Media
+  eventsCelebration, // Event Planning
+  bookingEfficient, // Booking Systems
+  deliverySwift, // Delivery Services
+  // Nature & Environment
+  natureFresh, // Nature & Outdoor
+  ecoSustainable, // Sustainability
+  gardenCalm, // Gardening
+  animalWarm, // Pet Care
+  oceanSerene, // Ocean & Marine
+  // Luxury & Premium
+  luxuryGold, // Luxury Brands
+  premiumElegant, // Premium Services
+  minimalClean, // Minimalist Design
+  modernSophisticated, // Modern Luxury
+  classicTimeless, // Classic Style
+  // Special Use Cases
+  kidsPlayful, // Kids Apps
+  learningInteractive, // Interactive Learning
+  meditationCalm, // Meditation & Wellness
+  financeBudget, // Budget Tracking
+  securityTrust, // Security Apps
+  // Additional Categories
+  sportsEnergy, // Sports & Athletics
+  fashionLuxury, // High Fashion
+  techSupport, // Customer Support
+  analyticsData, // Analytics & Data
+  governmentOfficial, // Government Apps
 }
 
 /// 1 map → isinya light & dark sekaligus
@@ -959,6 +1024,951 @@ final Map<YoColorScheme, Map<Brightness, YoCorePalette>> kYoPalettes = {
       primary: Color(0xFF4b5563),
       secondary: Color(0xFF6b7280),
       accent: Color(0xFFef4444),
+    ),
+  },
+
+  YoColorScheme.corporateBlue: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1A1D21),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF2563EB),
+      secondary: Color(0xFF64748B),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF1F5F9),
+      background: Color(0xFF0F1419),
+      primary: Color(0xFF3B82F6),
+      secondary: Color(0xFF94A3B8),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.financeTrust: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1E293B),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF0369A1),
+      secondary: Color(0xFF475569),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF8FAFC),
+      background: Color(0xFF0C1A2D),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFF64748B),
+      accent: Color(0xFFEF4444),
+    ),
+  },
+
+  YoColorScheme.healthcareClean: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF0FDF4),
+      primary: Color(0xFF059669),
+      secondary: Color(0xFF3B82F6),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF052E16),
+      primary: Color(0xFF10B981),
+      secondary: Color(0xFF60A5FA),
+      accent: Color(0xFFF87171),
+    ),
+  },
+
+  YoColorScheme.educationVibrant: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1E293B),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFD97706),
+      secondary: Color(0xFF7C3AED),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFFA855F7),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.productivityFocus: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF111827),
+      background: Color(0xFFF9FAFB),
+      primary: Color(0xFF7C3AED),
+      secondary: Color(0xFF059669),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF3F4F6),
+      background: Color(0xFF1F1A2D),
+      primary: Color(0xFF8B5CF6),
+      secondary: Color(0xFF10B981),
+      accent: Color(0xFFEF4444),
+    ),
+  },
+
+  // TECHNOLOGY & DIGITAL (5 schemes)
+  YoColorScheme.techModern: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0F172A),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF6366F1),
+      secondary: Color(0xFF06B6D4),
+      accent: Color(0xFFF59E0B),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF1F5F9),
+      background: Color(0xFF0F1A2A),
+      primary: Color(0xFF818CF8),
+      secondary: Color(0xFF22D3EE),
+      accent: Color(0xFFFBBF24),
+    ),
+  },
+
+  YoColorScheme.developerDark: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF111827),
+      background: Color(0xFFF9FAFB),
+      primary: Color(0xFF2563EB),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFF10B981),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF3F4F6),
+      background: Color(0xFF0D121F),
+      primary: Color(0xFF3B82F6),
+      secondary: Color(0xFF9CA3AF),
+      accent: Color(0xFF34D399),
+    ),
+  },
+
+  YoColorScheme.startupEnergy: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1A0B2E),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFF8B5CF6),
+      secondary: Color(0xFFEC4899),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAF5FF),
+      background: Color(0xFF1A0B2E),
+      primary: Color(0xFFA855F7),
+      secondary: Color(0xFFF472B6),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.cryptoBold: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFFEF4444),
+      accent: Color(0xFF10B981),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFFBBF24),
+      secondary: Color(0xFFF87171),
+      accent: Color(0xFF34D399),
+    ),
+  },
+
+  YoColorScheme.aiFuturistic: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0F172A),
+      background: Color(0xFFF0FDF4),
+      primary: Color(0xFF06B6D4),
+      secondary: Color(0xFF8B5CF6),
+      accent: Color(0xFFEC4899),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF0FDFA),
+      background: Color(0xFF042F2E),
+      primary: Color(0xFF22D3EE),
+      secondary: Color(0xFFA855F7),
+      accent: Color(0xFFF472B6),
+    ),
+  },
+
+  // SOCIAL & ENTERTAINMENT (5 schemes)
+  YoColorScheme.socialWarm: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFDF2F8),
+      primary: Color(0xFFEC4899),
+      secondary: Color(0xFF8B5CF6),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFDF4FF),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFF472B6),
+      secondary: Color(0xFFA855F7),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.datingRomantic: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF701A75),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFDB2777),
+      secondary: Color(0xFFC026D3),
+      accent: Color(0xFFF59E0B),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAE8FF),
+      background: Color(0xFF4A044E),
+      primary: Color(0xFFF472B6),
+      secondary: Color(0xFFE879F9),
+      accent: Color(0xFFFBBF24),
+    ),
+  },
+
+  YoColorScheme.musicDynamic: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF581C87),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFA855F7),
+      secondary: Color(0xFFEC4899),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAF5FF),
+      background: Color(0xFF3B0764),
+      primary: Color(0xFFC084FC),
+      secondary: Color(0xFFF472B6),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.gamingVibrant: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1A0B2E),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFFDC2626),
+      secondary: Color(0xFF7C3AED),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFECACA),
+      background: Color(0xFF450A0A),
+      primary: Color(0xFFEF4444),
+      secondary: Color(0xFF8B5CF6),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.streamingDark: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF9FAFB),
+      primary: Color(0xFFDC2626),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF3F4F6),
+      background: Color(0xFF000000),
+      primary: Color(0xFFEF4444),
+      secondary: Color(0xFF9CA3AF),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  // LIFESTYLE & DAILY USE (5 schemes)
+  YoColorScheme.fitnessMotivation: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF0FDF4),
+      primary: Color(0xFFDC2626),
+      secondary: Color(0xFFD97706),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF052E16),
+      primary: Color(0xFFEF4444),
+      secondary: Color(0xFFF59E0B),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.foodAppetizing: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF78350F),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFD97706),
+      secondary: Color(0xFFDC2626),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFFEF4444),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.travelAdventure: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0F4C75),
+      background: Color(0xFFF0F9FF),
+      primary: Color(0xFF0369A1),
+      secondary: Color(0xFF059669),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFE0F2FE),
+      background: Color(0xFF0C4A6E),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFF10B981),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.shoppingRetail: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF2563EB),
+      secondary: Color(0xFFDC2626),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF8FAFC),
+      background: Color(0xFF111827),
+      primary: Color(0xFF3B82F6),
+      secondary: Color(0xFFEF4444),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.weatherCalm: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0C4A6E),
+      background: Color(0xFFF0F9FF),
+      primary: Color(0xFF0284C7),
+      secondary: Color(0xFF0369A1),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFE0F2FE),
+      background: Color(0xFF0C4A6E),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFF38BDF8),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  // CREATIVE & DESIGN (5 schemes)
+  YoColorScheme.creativeArtistic: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF581C87),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFA855F7),
+      secondary: Color(0xFFEC4899),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAF5FF),
+      background: Color(0xFF3B0764),
+      primary: Color(0xFFC084FC),
+      secondary: Color(0xFFF472B6),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.photographyElegant: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF000000),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF000000),
+      primary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF9CA3AF),
+      accent: Color(0xFFEF4444),
+    ),
+  },
+
+  YoColorScheme.writingFocus: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFEFCE8),
+      primary: Color(0xFFCA8A04),
+      secondary: Color(0xFF57534E),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEFCE8),
+      background: Color(0xFF292524),
+      primary: Color(0xFFEAB308),
+      secondary: Color(0xFFA8A29E),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.artGallery2: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF78350F),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFD97706),
+      secondary: Color(0xFF57534E),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF292524),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFFA8A29E),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.fashionTrendy2: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF701A75),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFC026D3),
+      secondary: Color(0xFFDB2777),
+      accent: Color(0xFFF59E0B),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAE8FF),
+      background: Color(0xFF4A044E),
+      primary: Color(0xFFE879F9),
+      secondary: Color(0xFFF472B6),
+      accent: Color(0xFFFBBF24),
+    ),
+  },
+
+  // SPECIALIZED INDUSTRIES (5 schemes)
+  YoColorScheme.realEstateLuxury: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFEFCE8),
+      primary: Color(0xFFCA8A04),
+      secondary: Color(0xFF57534E),
+      accent: Color(0xFF0369A1),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEFCE8),
+      background: Color(0xFF292524),
+      primary: Color(0xFFEAB308),
+      secondary: Color(0xFFA8A29E),
+      accent: Color(0xFF0EA5E9),
+    ),
+  },
+
+  YoColorScheme.automotivePower: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFFDC2626),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFFF59E0B),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF111827),
+      primary: Color(0xFFEF4444),
+      secondary: Color(0xFF9CA3AF),
+      accent: Color(0xFFFBBF24),
+    ),
+  },
+
+  YoColorScheme.aviationSky2: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0C4A6E),
+      background: Color(0xFFF0F9FF),
+      primary: Color(0xFF0369A1),
+      secondary: Color(0xFF0284C7),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFE0F2FE),
+      background: Color(0xFF0C4A6E),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFF38BDF8),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.marineDeep: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0F4C75),
+      background: Color(0xFFF0FDFA),
+      primary: Color(0xFF0D9488),
+      secondary: Color(0xFF0F766E),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFCCFBF1),
+      background: Color(0xFF134E4A),
+      primary: Color(0xFF2DD4BF),
+      secondary: Color(0xFF14B8A6),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.spaceCosmic2: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1E1B4B),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF4F46E5),
+      secondary: Color(0xFF7C3AED),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFE0E7FF),
+      background: Color(0xFF312E81),
+      primary: Color(0xFF6366F1),
+      secondary: Color(0xFF8B5CF6),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  // COMMUNITY & SERVICES (5 schemes)
+  YoColorScheme.communityFriendly: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF0FDF4),
+      primary: Color(0xFF059669),
+      secondary: Color(0xFFD97706),
+      accent: Color(0xFF0369A1),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF052E16),
+      primary: Color(0xFF10B981),
+      secondary: Color(0xFFF59E0B),
+      accent: Color(0xFF0EA5E9),
+    ),
+  },
+
+  YoColorScheme.newsProfessional: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF000000),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF111827),
+      primary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF9CA3AF),
+      accent: Color(0xFFEF4444),
+    ),
+  },
+
+  YoColorScheme.eventsCelebration: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF701A75),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFC026D3),
+      secondary: Color(0xFFDB2777),
+      accent: Color(0xFFF59E0B),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAE8FF),
+      background: Color(0xFF4A044E),
+      primary: Color(0xFFE879F9),
+      secondary: Color(0xFFF472B6),
+      accent: Color(0xFFFBBF24),
+    ),
+  },
+
+  YoColorScheme.bookingEfficient: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF059669),
+      secondary: Color(0xFF0369A1),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF052E16),
+      primary: Color(0xFF10B981),
+      secondary: Color(0xFF0EA5E9),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.deliverySwift: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFD97706),
+      secondary: Color(0xFFDC2626),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFFEF4444),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  // NATURE & ENVIRONMENT (5 schemes)
+  YoColorScheme.natureFresh: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF14532D),
+      background: Color(0xFFF0FDF4),
+      primary: Color(0xFF059669),
+      secondary: Color(0xFF65A30D),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF052E16),
+      primary: Color(0xFF10B981),
+      secondary: Color(0xFF84CC16),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.ecoSustainable: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF064E3B),
+      background: Color(0xFFF0FDF4),
+      primary: Color(0xFF047857),
+      secondary: Color(0xFF059669),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFECFDF5),
+      background: Color(0xFF022C22),
+      primary: Color(0xFF10B981),
+      secondary: Color(0xFF34D399),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.gardenCalm: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF365314),
+      background: Color(0xFFF7FEE7),
+      primary: Color(0xFF65A30D),
+      secondary: Color(0xFF3F6212),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF7FEE7),
+      background: Color(0xFF1A2E05),
+      primary: Color(0xFF84CC16),
+      secondary: Color(0xFF4D7C0F),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.animalWarm: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF78350F),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFD97706),
+      secondary: Color(0xFF92400E),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFFB45309),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.oceanSerene: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0C4A6E),
+      background: Color(0xFFF0F9FF),
+      primary: Color(0xFF0369A1),
+      secondary: Color(0xFF0D9488),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFE0F2FE),
+      background: Color(0xFF0C4A6E),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFF14B8A6),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  // LUXURY & PREMIUM (5 schemes)
+  YoColorScheme.luxuryGold: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF78350F),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFCA8A04),
+      secondary: Color(0xFFA16207),
+      accent: Color(0xFF57534E),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF292524),
+      primary: Color(0xFFEAB308),
+      secondary: Color(0xFFCA8A04),
+      accent: Color(0xFFA8A29E),
+    ),
+  },
+
+  YoColorScheme.premiumElegant: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF000000),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFFCA8A04),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF000000),
+      primary: Color(0xFFFFFFFF),
+      secondary: Color(0xFF9CA3AF),
+      accent: Color(0xFFEAB308),
+    ),
+  },
+
+  YoColorScheme.minimalClean: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF6B7280),
+      secondary: Color(0xFF374151),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF111827),
+      primary: Color(0xFF9CA3AF),
+      secondary: Color(0xFF4B5563),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.modernSophisticated: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF4F46E5),
+      secondary: Color(0xFF6B7280),
+      accent: Color(0xFFEC4899),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF1F5F9),
+      background: Color(0xFF0F172A),
+      primary: Color(0xFF6366F1),
+      secondary: Color(0xFF94A3B8),
+      accent: Color(0xFFF472B6),
+    ),
+  },
+
+  YoColorScheme.classicTimeless: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFEFCE8),
+      primary: Color(0xFF57534E),
+      secondary: Color(0xFF78716C),
+      accent: Color(0xFFCA8A04),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEFCE8),
+      background: Color(0xFF292524),
+      primary: Color(0xFFA8A29E),
+      secondary: Color(0xFFD6D3D1),
+      accent: Color(0xFFEAB308),
+    ),
+  },
+
+  // SPECIAL USE CASES (5 schemes)
+  YoColorScheme.kidsPlayful: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF701A75),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFEC4899),
+      secondary: Color(0xFF8B5CF6),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAF5FF),
+      background: Color(0xFF4A044E),
+      primary: Color(0xFFF472B6),
+      secondary: Color(0xFFA855F7),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.learningInteractive: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1E293B),
+      background: Color(0xFFFFFBEB),
+      primary: Color(0xFFD97706),
+      secondary: Color(0xFF7C3AED),
+      accent: Color(0xFF06B6D4),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF3C7),
+      background: Color(0xFF451A03),
+      primary: Color(0xFFF59E0B),
+      secondary: Color(0xFF8B5CF6),
+      accent: Color(0xFF22D3EE),
+    ),
+  },
+
+  YoColorScheme.meditationCalm: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF0F4C75),
+      background: Color(0xFFF0FDFA),
+      primary: Color(0xFF0D9488),
+      secondary: Color(0xFF0369A1),
+      accent: Color(0xFF8B5CF6),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFCCFBF1),
+      background: Color(0xFF134E4A),
+      primary: Color(0xFF2DD4BF),
+      secondary: Color(0xFF0EA5E9),
+      accent: Color(0xFFA855F7),
+    ),
+  },
+
+  YoColorScheme.financeBudget: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF059669),
+      secondary: Color(0xFFDC2626),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF052E16),
+      primary: Color(0xFF10B981),
+      secondary: Color(0xFFEF4444),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.securityTrust: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF0369A1),
+      secondary: Color(0xFF059669),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF0C1A2D),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFF10B981),
+      accent: Color(0xFFEF4444),
+    ),
+  },
+
+  // ADDITIONAL CATEGORIES (5 schemes)
+  YoColorScheme.sportsEnergy: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFEF2F2),
+      primary: Color(0xFFDC2626),
+      secondary: Color(0xFFD97706),
+      accent: Color(0xFF059669),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFEF2F2),
+      background: Color(0xFF450A0A),
+      primary: Color(0xFFEF4444),
+      secondary: Color(0xFFF59E0B),
+      accent: Color(0xFF10B981),
+    ),
+  },
+
+  YoColorScheme.fashionLuxury: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFDF4FF),
+      primary: Color(0xFFC026D3),
+      secondary: Color(0xFFDB2777),
+      accent: Color(0xFFCA8A04),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFFAE8FF),
+      background: Color(0xFF4A044E),
+      primary: Color(0xFFE879F9),
+      secondary: Color(0xFFF472B6),
+      accent: Color(0xFFEAB308),
+    ),
+  },
+
+  YoColorScheme.techSupport: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF2563EB),
+      secondary: Color(0xFF059669),
+      accent: Color(0xFFD97706),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF0D121F),
+      primary: Color(0xFF3B82F6),
+      secondary: Color(0xFF10B981),
+      accent: Color(0xFFF59E0B),
+    ),
+  },
+
+  YoColorScheme.analyticsData: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFF8FAFC),
+      primary: Color(0xFF7C3AED),
+      secondary: Color(0xFF06B6D4),
+      accent: Color(0xFFEC4899),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF1F1A2D),
+      primary: Color(0xFF8B5CF6),
+      secondary: Color(0xFF22D3EE),
+      accent: Color(0xFFF472B6),
+    ),
+  },
+
+  YoColorScheme.governmentOfficial: {
+    Brightness.light: const YoCorePalette(
+      text: Color(0xFF1F2937),
+      background: Color(0xFFFFFFFF),
+      primary: Color(0xFF0369A1),
+      secondary: Color(0xFF57534E),
+      accent: Color(0xFFDC2626),
+    ),
+    Brightness.dark: const YoCorePalette(
+      text: Color(0xFFF9FAFB),
+      background: Color(0xFF0C1A2D),
+      primary: Color(0xFF0EA5E9),
+      secondary: Color(0xFFA8A29E),
+      accent: Color(0xFFEF4444),
     ),
   },
 };
