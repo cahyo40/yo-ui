@@ -34,7 +34,6 @@ enum YoColorScheme {
   fashionTrendy, // tetap - Fashion & Style
   scienceLab, // tetap - Science & Research
   communityWarm, // tetap - Community & Forum
-  // 20 Tambahan Baru
   legalJustice, // Legal & Law Apps - Keadilan & Kepercayaan
   agricultureFresh, // Agriculture & Farming - Segar & Alam
   constructionSolid, // Construction & Building - Kokoh & Terpercaya

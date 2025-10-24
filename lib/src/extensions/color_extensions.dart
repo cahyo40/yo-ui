@@ -22,6 +22,10 @@ extension YoColorContext on BuildContext {
   Color get accentColor => _active.accent;
   Color get backgroundColor => _active.background;
   Color get textColor => _active.text;
+  Color get onPrimaryColor => _active.onPrimary;
+  Color get onBackgroundColor => _active.onBackground;
+  Color get onPrimaryBW => _active.onPrimaryBW;
+  Color get onBackgroundBW => _active.onBackgroundBW;
 
   // semantic
   Color get successColor => YoColors.success(this);

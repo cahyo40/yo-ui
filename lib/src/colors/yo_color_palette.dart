@@ -14,6 +14,14 @@ class YoCorePalette {
     required this.secondary,
     required this.accent,
   });
+
+  // dua baris ini saja
+  Color get onPrimaryBW =>
+      primary.computeLuminance() > 0.5 ? Colors.black : Colors.white;
+  Color get onBackgroundBW =>
+      background.computeLuminance() > 0.5 ? Colors.black : Colors.white;
+
+  Color get onPrimary => primary.computeLuminance() > 0.5 ? text : background;
+  Color get onBackground =>
+      primary.computeLuminance() > 0.5 ? text : background;
 }
-
-
