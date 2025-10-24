@@ -1,6 +1,10 @@
 import 'package:intl/intl.dart';
 
 class YoDateFormatter {
+  static DateTexts _texts = DateTexts.indonesian; // default
+
+  /// Consumer tinggal set 1 baris di main
+  static set texts(DateTexts t) => _texts = t;
   // === BASIC FORMATTING ===
 
   // Date Formats - tanpa locale parameter
@@ -28,31 +32,25 @@ class YoDateFormatter {
     final now = DateTime.now();
     final difference = now.difference(date);
 
-    return _formatRelativeTime(date, difference);
-  }
-
-  static String _formatRelativeTime(DateTime date, Duration difference) {
     if (difference.inDays == 0) {
       if (difference.inHours == 0) {
-        if (difference.inMinutes == 0) {
-          return 'Baru saja';
-        }
-        return '${difference.inMinutes} menit lalu';
+        if (difference.inMinutes == 0) return _texts.justNow;
+        return _texts.minutesAgo(difference.inMinutes);
       }
-      return '${difference.inHours} jam lalu';
+      return _texts.hoursAgo(difference.inHours);
     } else if (difference.inDays == 1) {
-      return 'Kemarin';
+      return _texts.yesterday;
     } else if (difference.inDays < 7) {
-      return '${difference.inDays} hari lalu';
+      return _texts.daysAgo(difference.inDays);
     } else if (difference.inDays < 30) {
       final weeks = (difference.inDays / 7).floor();
-      return '$weeks minggu lalu';
+      return _texts.weeksAgo(weeks);
     } else if (difference.inDays < 365) {
       final months = (difference.inDays / 30).floor();
-      return '$months bulan lalu';
+      return _texts.monthsAgo(months);
     } else {
       final years = (difference.inDays / 365).floor();
-      return '$years tahun lalu';
+      return _texts.yearsAgo(years);
     }
   }
 
@@ -181,15 +179,15 @@ class YoDateFormatter {
 
   // === DURATION FORMATTING ===
 
-  static String formatDuration(Duration duration) {
-    if (duration.inHours > 0) {
-      return '${duration.inHours} jam ${duration.inMinutes.remainder(60)} menit';
-    } else if (duration.inMinutes > 0) {
-      return '${duration.inMinutes} menit';
-    } else {
-      return '${duration.inSeconds} detik';
-    }
+static String formatDuration(Duration duration) {
+  if (duration.inHours > 0) {
+    return _texts.durationHm(duration.inHours, duration.inMinutes.remainder(60));
+  } else if (duration.inMinutes > 0) {
+    return _texts.durationM(duration.inMinutes);
+  } else {
+    return _texts.durationS(duration.inSeconds);
   }
+}
 
   static String formatDurationShort(Duration duration) {
     if (duration.inHours > 0) {
@@ -219,12 +217,12 @@ class YoDateFormatter {
     return format.format(date);
   }
 
-  static String getRelativeDay(DateTime date) {
-    if (isToday(date)) return 'Hari ini';
-    if (isYesterday(date)) return 'Kemarin';
-    if (isTomorrow(date)) return 'Besok';
-    return formatDate(date);
-  }
+static String getRelativeDay(DateTime date) {
+  if (isToday(date)) return _texts.today;
+  if (isYesterday(date)) return _texts.yesterday;
+  if (isTomorrow(date)) return _texts.tomorrow;
+  return formatDate(date);
+}
 
   // === LIST GENERATORS ===
 
@@ -322,4 +320,70 @@ class YoDateFormatter {
 
     return daysBetween(now, nextBirthday);
   }
+}
+
+class DateTexts {
+  final String justNow;
+  final String Function(int n) minutesAgo;
+  final String Function(int n) hoursAgo;
+  final String yesterday;
+  final String Function(int n) daysAgo;
+  final String Function(int n) weeksAgo;
+  final String Function(int n) monthsAgo;
+  final String Function(int n) yearsAgo;
+  final String Function(int h, int m) durationHm; // h>0
+  final String Function(int m) durationM; // m>0
+  final String Function(int s) durationS; // s>0
+  final String today;
+  final String tomorrow;
+
+  const DateTexts({
+    required this.justNow,
+    required this.minutesAgo,
+    required this.hoursAgo,
+    required this.yesterday,
+    required this.daysAgo,
+    required this.weeksAgo,
+    required this.monthsAgo,
+    required this.yearsAgo,
+    required this.durationHm,
+    required this.durationM,
+    required this.durationS,
+    required this.today,
+    required this.tomorrow,
+  });
+
+  /* ---------- built-in Indo ---------- */
+  static final indonesian = DateTexts(
+    justNow: 'Baru saja',
+    minutesAgo: (n) => n == 1 ? '1 menit lalu' : '$n menit lalu',
+    hoursAgo: (n) => n == 1 ? '1 jam lalu' : '$n jam lalu',
+    yesterday: 'Kemarin',
+    daysAgo: (n) => n == 1 ? '1 hari lalu' : '$n hari lalu',
+    weeksAgo: (n) => n == 1 ? '1 minggu lalu' : '$n minggu lalu',
+    monthsAgo: (n) => n == 1 ? '1 bulan lalu' : '$n bulan lalu',
+    yearsAgo: (n) => n == 1 ? '1 tahun lalu' : '$n tahun lalu',
+    durationHm: (h, m) => '$h jam $m menit',
+    durationM: (m) => '$m menit',
+    durationS: (s) => '$s detik',
+    today: 'Hari ini',
+    tomorrow: 'Besok',
+  );
+
+  /* ---------- built-in English ---------- */
+  static final english = DateTexts(
+    justNow: 'Now',
+    durationHm: (h, m) => '${h}h ${m}m',
+    durationM: (m) => '${m} min',
+    durationS: (s) => '${s}s',
+    today: 'Today',
+    tomorrow: 'Tomorrow',
+    minutesAgo: (n) => n == 1 ? '1 minute ago' : '$n minutes ago',
+    hoursAgo: (n) => n == 1 ? '1 hour ago' : '$n hours ago',
+    yesterday: 'Yesterday',
+    daysAgo: (n) => n == 1 ? '1 day ago' : '$n days ago',
+    weeksAgo: (n) => n == 1 ? '1 week ago' : '$n weeks ago',
+    monthsAgo: (n) => n == 1 ? '1 month ago' : '$n months ago',
+    yearsAgo: (n) => n == 1 ? '1 year ago' : '$n years ago',
+  );
 }
