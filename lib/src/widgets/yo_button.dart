@@ -187,50 +187,120 @@ class YoButton extends StatelessWidget {
         return ElevatedButton.styleFrom(
           backgroundColor: colorScheme.primary,
           foregroundColor: colorScheme.onPrimary,
-          disabledBackgroundColor: theme.disabledColor,
+          disabledBackgroundColor: colorScheme.onSurface.withOpacity(0.12),
+          disabledForegroundColor: colorScheme.onSurface.withOpacity(0.38),
           elevation: 0,
+          shadowColor: Colors.transparent,
           shape: _getShape(),
+          padding: EdgeInsets.zero,
         ).copyWith(
-          foregroundColor: WidgetStateProperty.resolveWith((states) {
+          elevation: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return 1;
+            if (states.contains(WidgetState.pressed)) return 0;
+            return 0;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
             if (states.contains(WidgetState.disabled)) {
-              return colorScheme.onSurface.withValues(alpha: 0.38);
+              return colorScheme.onSurface.withOpacity(0.12);
             }
-            return textColor ?? colorScheme.onPrimary;
+            if (states.contains(WidgetState.pressed)) {
+              return colorScheme.primary.withOpacity(0.8);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return colorScheme.primary.withOpacity(0.9);
+            }
+            return colorScheme.primary;
           }),
         );
 
       case YoButtonVariant.secondary:
         return ElevatedButton.styleFrom(
-          backgroundColor: colorScheme.secondary,
-          foregroundColor: colorScheme.onSecondary,
-          disabledBackgroundColor: theme.disabledColor,
+          backgroundColor: colorScheme.surfaceVariant,
+          foregroundColor: colorScheme.onSurfaceVariant,
+          disabledBackgroundColor: colorScheme.onSurface.withOpacity(0.12),
+          disabledForegroundColor: colorScheme.onSurface.withOpacity(0.38),
           elevation: 0,
+          shadowColor: Colors.transparent,
           shape: _getShape(),
+          padding: EdgeInsets.zero,
+        ).copyWith(
+          elevation: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return 1;
+            if (states.contains(WidgetState.pressed)) return 0;
+            return 0;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return colorScheme.onSurface.withOpacity(0.12);
+            }
+            if (states.contains(WidgetState.pressed)) {
+              return colorScheme.surfaceVariant.withOpacity(0.8);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return colorScheme.surfaceVariant.withOpacity(0.9);
+            }
+            return colorScheme.surfaceVariant;
+          }),
         );
 
       case YoButtonVariant.outline:
         return ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          foregroundColor: _getForegroundColor(context),
+          foregroundColor: colorScheme.primary,
           disabledBackgroundColor: Colors.transparent,
-          disabledForegroundColor: theme.disabledColor,
+          disabledForegroundColor: colorScheme.onSurface.withOpacity(0.38),
           side: BorderSide(
             color: onPressed != null
-                ? colorScheme.primary
-                : theme.disabledColor,
+                ? colorScheme.outline
+                : colorScheme.onSurface.withOpacity(0.38),
+            width: 1,
           ),
           elevation: 0,
+          shadowColor: Colors.transparent,
           shape: _getShape(),
+          padding: EdgeInsets.zero,
+        ).copyWith(
+          elevation: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return 1;
+            if (states.contains(WidgetState.pressed)) return 0;
+            return 0;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) {
+              return colorScheme.primary.withOpacity(0.08);
+            }
+            if (states.contains(WidgetState.pressed)) {
+              return colorScheme.primary.withOpacity(0.12);
+            }
+            return Colors.transparent;
+          }),
         );
 
       case YoButtonVariant.ghost:
         return ElevatedButton.styleFrom(
           backgroundColor: Colors.transparent,
-          foregroundColor: _getForegroundColor(context),
+          foregroundColor: colorScheme.primary,
           disabledBackgroundColor: Colors.transparent,
-          disabledForegroundColor: theme.disabledColor,
+          disabledForegroundColor: colorScheme.onSurface.withOpacity(0.38),
           elevation: 0,
+          shadowColor: Colors.transparent,
           shape: _getShape(),
+          padding: EdgeInsets.zero,
+        ).copyWith(
+          elevation: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return 0;
+            if (states.contains(WidgetState.pressed)) return 0;
+            return 0;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) {
+              return colorScheme.primary.withOpacity(0.08);
+            }
+            if (states.contains(WidgetState.pressed)) {
+              return colorScheme.primary.withOpacity(0.12);
+            }
+            return Colors.transparent;
+          }),
         );
 
       case YoButtonVariant.custom:
@@ -238,24 +308,45 @@ class YoButton extends StatelessWidget {
         return ElevatedButton.styleFrom(
           backgroundColor: bgColor,
           foregroundColor: _getCustomTextColor(context, bgColor),
-          disabledBackgroundColor: bgColor.withValues(alpha: 0.32),
+          disabledBackgroundColor: bgColor.withOpacity(0.32),
+          disabledForegroundColor: colorScheme.onSurface.withOpacity(0.38),
           elevation: 0,
+          shadowColor: Colors.transparent,
           shape: _getShape(),
+          padding: EdgeInsets.zero,
+        ).copyWith(
+          elevation: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.hovered)) return 1;
+            if (states.contains(WidgetState.pressed)) return 0;
+            return 0;
+          }),
+          backgroundColor: WidgetStateProperty.resolveWith((states) {
+            if (states.contains(WidgetState.disabled)) {
+              return bgColor.withOpacity(0.32);
+            }
+            if (states.contains(WidgetState.pressed)) {
+              return bgColor.withOpacity(0.8);
+            }
+            if (states.contains(WidgetState.hovered)) {
+              return bgColor.withOpacity(0.9);
+            }
+            return bgColor;
+          }),
         );
     }
   }
 
   OutlinedBorder _getShape() =>
-      RoundedRectangleBorder(borderRadius: BorderRadius.circular(8));
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(6));
 
   EdgeInsets _getPadding() {
     switch (size) {
       case YoButtonSize.small:
-        return const EdgeInsets.symmetric(horizontal: 12, vertical: 8);
+        return const EdgeInsets.symmetric(horizontal: 16, vertical: 8);
       case YoButtonSize.medium:
-        return const EdgeInsets.symmetric(horizontal: 16, vertical: 12);
+        return const EdgeInsets.symmetric(horizontal: 20, vertical: 10);
       case YoButtonSize.large:
-        return const EdgeInsets.symmetric(horizontal: 20, vertical: 16);
+        return const EdgeInsets.symmetric(horizontal: 24, vertical: 12);
     }
   }
 
@@ -314,16 +405,19 @@ class YoButton extends StatelessWidget {
         return baseTextStyle.labelMedium!.copyWith(
           color: textColor,
           fontWeight: FontWeight.w500,
+          letterSpacing: 0.1,
         );
       case YoButtonSize.medium:
         return baseTextStyle.bodyMedium!.copyWith(
           color: textColor,
           fontWeight: FontWeight.w500,
+          letterSpacing: 0.15,
         );
       case YoButtonSize.large:
         return baseTextStyle.bodyLarge!.copyWith(
           color: textColor,
           fontWeight: FontWeight.w600,
+          letterSpacing: 0.15,
         );
     }
   }
@@ -331,11 +425,11 @@ class YoButton extends StatelessWidget {
   double _getIconSpacing() {
     switch (size) {
       case YoButtonSize.small:
-        return 6;
-      case YoButtonSize.medium:
         return 8;
-      case YoButtonSize.large:
+      case YoButtonSize.medium:
         return 10;
+      case YoButtonSize.large:
+        return 12;
     }
   }
 
